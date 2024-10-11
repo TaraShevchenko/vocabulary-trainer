@@ -14,55 +14,105 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
+model WordRelation {
+    wordId        String
+    relatedWordId String
+
+    word        Word @relation("WordRelations", fields: [wordId], references: [id])
+    relatedWord Word @relation("WordRelatedTo", fields: [relatedWordId], references: [id])
+
+    @@unique([wordId, relatedWordId])
+    @@map("public.words_relations")
+}
+
+model Tag {
+    id        String     @id @default(uuid())
     name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    taggables Taggable[]
 
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
+    @@map("public.tags")
 }
 
-// Necessary for Next auth
-model Account {
-    id                       String  @id @default(cuid())
-    userId                   String
-    type                     String
-    provider                 String
-    providerAccountId        String
-    refresh_token            String? // @db.Text
-    access_token             String? // @db.Text
-    expires_at               Int?
-    token_type               String?
-    scope                    String?
-    id_token                 String? // @db.Text
-    session_state            String?
-    user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-    refresh_token_expires_in Int?
+model Taggable {
+    tagId  String
+    wordId String
 
-    @@unique([provider, providerAccountId])
+    tag  Tag  @relation(fields: [tagId], references: [id])
+    word Word @relation(fields: [wordId], references: [id])
+
+    @@id([tagId, wordId])
+    @@map("public.taggable")
 }
 
-model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique
+model Category {
+    id           String        @id @default(uuid())
+    name         String
+    categorables Categorable[]
+
+    @@map("public.categories")
+}
+
+model Categorable {
+    wordId     String
+    categoryId String
+
+    word     Word     @relation(fields: [wordId], references: [id])
+    category Category @relation(fields: [categoryId], references: [id])
+
+    @@id([wordId, categoryId])
+    @@map("public.categorable")
+}
+
+model Word {
+    id           String         @id @default(uuid())
+    name         String
+    description  String
+    lang         String
+    relations    WordRelation[] @relation("WordRelations")
+    relatedTo    WordRelation[] @relation("WordRelatedTo")
+    taggables    Taggable[]
+    categorables Categorable[]
     userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("public.words")
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String    @id @default(uuid())
     name          String?
     email         String?   @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
+    words         Word[]
+}
+
+model Account {
+    id                String  @id @default(uuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String?
+    session_state     String?
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(uuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
