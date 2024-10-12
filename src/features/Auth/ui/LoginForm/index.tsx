@@ -25,8 +25,8 @@ export const LoginForm = () => {
                 <Anchor
                     href={'/registration'}
                     className="w-full text-white"
-                    variant={'link'}
                     text={'Register a new Account'}
+                    variant={'link'}
                 />
             </CardFooter>
         </>

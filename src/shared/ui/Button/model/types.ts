@@ -8,15 +8,20 @@ import { type LucideIcon } from 'lucide-react'
 import { type Icon, type IconProps } from 'shared/ui/Icons'
 import { type TextProps } from 'shared/ui/Text'
 
-import { type buttonVariants } from './config'
+import { type buttonCva } from './config'
+
+export type BaseButtonProps = {
+    isActive?: boolean
+} & Omit<VariantProps<typeof buttonCva>, 'activeByVariant'>
 
 export type ButtonContentProps = {
     text?: string
     icon?: LucideIcon | Icon
     iconProps?: IconProps
-    isActive?: boolean
     textProps?: Omit<TextProps, 'text'>
-} & Omit<VariantProps<typeof buttonVariants>, 'activeByVariant'>
+} & BaseButtonProps
+
+export type ButtonWithChildProps = Omit<BaseButtonProps, 'size'> & ButtonHTMLAttributes<HTMLButtonElement>
 
 export type ButtonProps = ButtonContentProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>
 

@@ -2,7 +2,7 @@ import type { VariantProps } from 'class-variance-authority'
 
 import { cn } from 'shared/utils/cn'
 
-import { textVariants } from './config'
+import { textCva } from './config'
 
 type TextType = {
     className?: string
@@ -11,9 +11,9 @@ type TextType = {
     inheritColor?: boolean
 }
 
-export type TextProps = TextType & VariantProps<typeof textVariants>
+export type TextProps = TextType & VariantProps<typeof textCva>
 
 export const Text = ({ className, text, variant, tag, inheritColor }: TextProps) => {
     const Comp = tag ? tag : 'span'
-    return <Comp className={cn(textVariants({ variant, className }), { 'text-inherit': inheritColor })}>{text}</Comp>
+    return <Comp className={cn(textCva({ variant, className }), { 'text-inherit': inheritColor })}>{text}</Comp>
 }
