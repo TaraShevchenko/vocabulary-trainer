@@ -1,11 +1,14 @@
 import { type FC } from 'react'
 
+import Image from 'next/image'
+
+import logo from 'widgets/Header/assets/Logo.png'
+
 import { LangSelector } from 'features/LangSelector'
 import { ThemeSelector } from 'features/ThemeSelector'
 
 import { type Children } from 'shared/types/types'
 import { Card, CardDescription, CardHeader, CardTitle } from 'shared/ui/Card'
-import { Logo } from 'shared/ui/Icons'
 import { Text } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
 
@@ -20,7 +23,8 @@ export const AuthCard: FC<AuthCardProps> = ({ title, subtitle, children }) => {
             <Card className={'w-[400px]'}>
                 <CardHeader className="space-y-1">
                     <div className={cn('mb-2 flex items-center justify-between')}>
-                        <Logo className={cn('h-9 w-fit')} />
+                        {/* <Logo className={cn('h-9 w-fit')} /> */}
+                        <Image className={cn('h-auto w-8 mt-1')} src={logo} alt="Vocabulary Trainer Logo" />
                         <div className={cn('flex items-center gap-2')}>
                             <ThemeSelector />
                             <LangSelector />

@@ -6,16 +6,20 @@ import { ThemeSelector } from 'features/ThemeSelector'
 
 import { Anchor } from 'shared/ui/Button'
 import { Container } from 'shared/ui/Container'
+import { Text } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
 
-import logo from './assets/LogoWithText.png'
+import logo from './assets/Logo.png'
 
 export const Header = () => {
     return (
         <header>
             <Container className={cn('flex h-14 items-center justify-between')}>
                 <div className={cn('flex items-center gap-5')}>
-                    <Image className={cn('h-10 w-auto')} src={logo} alt={'logo'} priority={false} />
+                    <div className={cn('flex items-center gap-4')}>
+                        <Image className={cn('h-auto w-8 mt-1')} src={logo} alt={'logo'} priority={false} />
+                        <Text variant={'title'} text={'Vocabulary Trainer'} />
+                    </div>
                     <nav>
                         <ul className={cn('flex')}>
                             <li>

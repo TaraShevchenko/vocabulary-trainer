@@ -7,7 +7,7 @@ import { Google } from 'shared/ui/Icons'
 
 export const AuthGoogle = () => {
     const handleSignIn = () => {
-        signIn('google', { callbackUrl: '/accounts' }).catch((error) => {
+        signIn('google', { callbackUrl: '/dashboard' }).catch((error) => {
             console.error('Sign-in error:', error)
         })
     }
