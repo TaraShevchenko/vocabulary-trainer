@@ -3,19 +3,15 @@ import { forwardRef } from 'react'
 import { Badge } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
 
-import { buttonVariants } from '../../model/config'
-import { FilterButtonProps } from '../../model/types'
+import { buttonCva } from '../../model/config'
+import { type FilterButtonProps } from '../../model/types'
 import { ButtonContent } from '../ButtonContent'
 
 export const FiltersButton = forwardRef<HTMLButtonElement, FilterButtonProps>(
     ({ variant, size, className, isActive, text, icon, textProps, activeFilters, ...otherProps }, ref) => {
         const activeByVariant = isActive ? variant : undefined
         return (
-            <button
-                className={cn(buttonVariants({ variant, activeByVariant, size }), className)}
-                ref={ref}
-                {...otherProps}
-            >
+            <button className={cn(buttonCva({ variant, activeByVariant, size }), className)} ref={ref} {...otherProps}>
                 <ButtonContent variant={variant} size={size} icon={icon} text={text} textProps={textProps} />
 
                 {!!activeFilters?.length && (

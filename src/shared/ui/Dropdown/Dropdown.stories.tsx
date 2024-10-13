@@ -45,7 +45,7 @@ export const Default: Story = {
             <DropdownMenuTrigger text={'Dropdown'} />
             <DropdownMenuContent>
                 {/*TODO: integrate scrollArea and use only when really need, condition and lazy load */}
-                <Scroll className="max-h-[500px] w-56 pr-1.5">
+                <Scroll className="max-h-[300px] w-56 pr-1.5">
                     <DropdownMenuLabel text={'Displayed column(s)'} />
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
