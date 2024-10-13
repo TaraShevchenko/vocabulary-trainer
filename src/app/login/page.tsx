@@ -1,8 +1,8 @@
 import { AuthCard, LoginForm } from 'features/Auth'
 
 export const metadata = {
-    title: 'Login - Coinroller',
-    description: 'Keep your coins',
+    title: 'Login - Vocabulary Trainer',
+    description: 'Login to your account using the options below!',
 }
 
 export default async function Login() {

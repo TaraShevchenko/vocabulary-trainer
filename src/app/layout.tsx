@@ -8,8 +8,8 @@ import 'shared/styles/globals.css'
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--montserrat' })
 
 export const metadata = {
-    title: 'Coinroller',
-    description: 'Keep your coins',
+    title: 'Vocabulary Trainer',
+    description: 'Train your vocabulary',
     icons: [{ rel: 'icon', url: '/favicon.ico' }],
 }
 
