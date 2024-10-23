@@ -27,7 +27,6 @@ export const metadata: Metadata = {
         { rel: 'icon', type: 'image/png', sizes: '16x16', url: '/favicon-16x16.png' },
     ],
     manifest: '/manifest.json',
-    themeColor: '#000000',
     other: {
         'msapplication-TileColor': '#000000',
         'msapplication-TileImage': '/ms-icon-144x144.png',

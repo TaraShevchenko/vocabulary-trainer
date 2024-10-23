@@ -1,16 +1,9 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
     provider = "prisma-client-js"
 }
 
 datasource db {
     provider = "postgresql"
-    // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading:
-    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
 }
 
@@ -22,15 +15,12 @@ model WordRelation {
     relatedWord Word @relation("WordRelatedTo", fields: [relatedWordId], references: [id])
 
     @@unique([wordId, relatedWordId])
-    @@map("public.words_relations")
 }
 
 model Tag {
     id        String     @id @default(uuid())
     name      String
     taggables Taggable[]
-
-    @@map("public.tags")
 }
 
 model Taggable {
@@ -41,15 +31,12 @@ model Taggable {
     word Word @relation(fields: [wordId], references: [id])
 
     @@id([tagId, wordId])
-    @@map("public.taggable")
 }
 
 model Category {
     id           String        @id @default(uuid())
     name         String
     categorables Categorable[]
-
-    @@map("public.categories")
 }
 
 model Categorable {
@@ -60,7 +47,6 @@ model Categorable {
     category Category @relation(fields: [categoryId], references: [id])
 
     @@id([wordId, categoryId])
-    @@map("public.categorable")
 }
 
 model Word {
@@ -74,8 +60,6 @@ model Word {
     categorables Categorable[]
     userId       String
     user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@map("public.words")
 }
 
 model User {
