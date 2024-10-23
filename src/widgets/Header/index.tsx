@@ -9,7 +9,7 @@ import { Container } from 'shared/ui/Container'
 import { Text } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
 
-import logo from './assets/Logo.png'
+import logo from 'public/logo.png'
 
 export const Header = () => {
     return (

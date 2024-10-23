@@ -1,5 +1,4 @@
-import { accountRouter } from 'entities/Accounts/model/api'
-import { postRouter } from 'entities/Post'
+import { userRouter } from 'entities/User'
 
 import { createCallerFactory, createTRPCRouter } from './trpc'
 
@@ -9,8 +8,7 @@ import { createCallerFactory, createTRPCRouter } from './trpc'
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-    post: postRouter,
-    account: accountRouter,
+    user: userRouter,
 })
 
 // export type definition of API

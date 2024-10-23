@@ -8,6 +8,13 @@ module.exports = {
                 montserrat: 'var(--montserrat)',
             },
             screens: {
+                'up375': '376px',
+                'up500': '501px',
+                'up768': '769px',
+                'up992': '993px',
+                'up1200': '1201px',
+                'up1365': '1366px',
+                'up1440': '1441px',
                 'hover-yes': { raw: '(hover: hover)' },
                 'hover-no': { raw: '(hover: none)' },
             },
