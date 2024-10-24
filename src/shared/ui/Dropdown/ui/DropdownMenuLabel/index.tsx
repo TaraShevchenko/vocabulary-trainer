@@ -13,11 +13,12 @@ export const DropdownMenuLabel = forwardRef<
     ElementRef<typeof RadixDropdownComponents.Label>,
     Omit<ComponentPropsWithoutRef<typeof RadixDropdownComponents.Label>, 'children'> & {
         text: string
+        //TODO: use icon
         icon?: LucideIcon
         inset?: boolean
         textProps?: Omit<TextProps, 'text'>
     }
->(({ className, inset, icon: Icon, text, textProps, ...props }, ref) => (
+>(({ className, inset, text, textProps, ...props }, ref) => (
     <RadixDropdownComponents.Label
         ref={ref}
         className={cn('px-2.5 py-1.5 text-sm font-semibold', inset && 'pl-8', className)}

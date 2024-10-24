@@ -10,12 +10,12 @@ import { cn } from 'shared/utils/cn'
 
 export const DropdownMenuSubTrigger = forwardRef<
     ElementRef<typeof RadixDropdownComponents.SubTrigger>,
-    ComponentPropsWithoutRef<typeof RadixDropdownComponents.SubTrigger> & {
+    Omit<ComponentPropsWithoutRef<typeof RadixDropdownComponents.SubTrigger>, 'children'> & {
         inset?: boolean
         icon?: LucideIcon
         textProps?: Omit<TextProps, 'text'>
     } & Pick<TextProps, 'text'>
->(({ className, inset, icon: Icon, text, textProps, children, ...props }, ref) => (
+>(({ className, inset, icon: Icon, text, textProps, ...props }, ref) => (
     <RadixDropdownComponents.SubTrigger
         ref={ref}
         className={cn(

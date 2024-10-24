@@ -12,11 +12,7 @@ export const Anchor = forwardRef<HTMLAnchorElement, AnchorProps>(
     ({ variant, size, className, isActive, text, textProps, icon, iconProps, ...otherProps }, ref) => {
         const activeByVariant = isActive ? variant : undefined
         return (
-            <Link
-                className={cn(buttonCva({ variant, activeByVariant, size }), className)}
-                ref={ref}
-                {...otherProps}
-            >
+            <Link className={cn(buttonCva({ variant, activeByVariant, size }), className)} ref={ref} {...otherProps}>
                 <ButtonContent
                     variant={variant}
                     size={size}

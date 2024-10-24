@@ -1,4 +1,4 @@
-import { Dialog, DialogProps } from '@radix-ui/react-dialog'
+import { Dialog, type DialogProps } from '@radix-ui/react-dialog'
 import { Command } from 'cmdk'
 
 import { DialogContent } from 'shared/ui/Dialog'

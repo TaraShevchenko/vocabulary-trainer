@@ -1,16 +1,11 @@
-import React from 'react';
+import React from 'react'
 
+import { Montserrat } from 'next/font/google'
 
-
-import { Montserrat } from 'next/font/google';
-
-
-
-import type { Preview } from '@storybook/react';
-import { themes } from '@storybook/theming';
-import type { ThemeConfig } from 'storybook-addon-data-theme-switcher';
-import { type SourceLinkParameter, getFileUrl } from 'storybook-addon-source-link';
-
+import type { Preview } from '@storybook/react'
+import { themes } from '@storybook/theming'
+import type { ThemeConfig } from 'storybook-addon-data-theme-switcher'
+import { type SourceLinkParameter, getFileUrl } from 'storybook-addon-source-link'
 
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--montserrat' })
 

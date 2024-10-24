@@ -1,6 +1,6 @@
 import { type VariantProps, cva } from 'class-variance-authority'
 
-import { type textVariants } from 'shared/ui/Text'
+import { type textCva } from 'shared/ui/Text'
 
 export const buttonBase = [
     'inline-flex items-center justify-center rounded-md ring-offset-background transition-colors gap-2',
@@ -65,7 +65,7 @@ export const buttonIconVariants = cva('h-4 w-auto', {
 
 export const TEXT_PROPS_BY_BUTTON_SIZE: Record<
     NonNullable<VariantProps<typeof buttonCva>['size']>,
-    VariantProps<typeof textVariants>['variant']
+    VariantProps<typeof textCva>['variant']
 > = {
     default: 'default',
     sm: 'sm',

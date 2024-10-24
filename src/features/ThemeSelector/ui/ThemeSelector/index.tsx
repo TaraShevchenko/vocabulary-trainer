@@ -1,20 +1,23 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
+import { SunMoon } from 'lucide-react'
 
-
-import { SunMoon } from 'lucide-react';
-
-
-
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from 'shared/ui/Dropdown';
-
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from 'shared/ui/Dropdown'
 
 const getInitialTheme = () => {
     const savedTheme = localStorage.getItem('theme')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    
+
     return savedTheme ? savedTheme : prefersDark ? 'dark' : 'light'
 }
 

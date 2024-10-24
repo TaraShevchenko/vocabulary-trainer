@@ -12,7 +12,7 @@ export const Input = (props: InputProps) => {
     } = useFormContext()
 
     const errorMessage =
-        !!errors[name]?.message && typeof errors[name]?.message === 'string' ? (errors[name]?.message as string) : ''
+        !!errors[name]?.message && typeof errors[name]?.message === 'string' ? errors[name]?.message : ''
     //TODO: delete console.log after adding error props to input
     !!errorMessage && console.log('Input Error Message', errorMessage)
 

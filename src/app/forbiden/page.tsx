@@ -4,7 +4,5 @@ export const metadata = {
 }
 
 export default async function Forbidden() {
-    return (
-        <div>Forbidden Page - You are not allowed to access this page</div>
-    )
+    return <div>Forbidden Page - You are not allowed to access this page</div>
 }

@@ -35,6 +35,7 @@ const config = {
                 },
             },
         ],
+        '@typescript-eslint/no-unused-expressions': 'off',
     },
 }
 

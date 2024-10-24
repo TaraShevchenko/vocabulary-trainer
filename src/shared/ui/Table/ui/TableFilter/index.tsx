@@ -29,7 +29,7 @@ export const TableFilter = ({
 }: TableFilterProps) => {
     const activeFilters = useMemo(
         () => filters.filter((filter) => filter.isActive).map((filter) => filter.name),
-        [JSON.stringify(filters)],
+        [JSON.stringify(filters)], // eslint-disable-line react-hooks/exhaustive-deps
     )
 
     const handleOnSelect = useCallback(

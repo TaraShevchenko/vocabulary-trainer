@@ -4,9 +4,12 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "dev-full": "concurrently \"next dev\" \"storybook dev -p 6006\" \"prisma studio\"",
         "dev": "next dev",
         "start": "next start",
         "build": "next build",
+        "format": "prettier --write .",
+        "format-then-build": "npm run format && npm run build",
         "lint": "next lint",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",

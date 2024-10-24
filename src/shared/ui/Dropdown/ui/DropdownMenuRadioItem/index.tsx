@@ -10,11 +10,11 @@ import { cn } from 'shared/utils/cn'
 
 export const DropdownMenuRadioItem = forwardRef<
     ElementRef<typeof RadixDropdownComponents.RadioItem>,
-    ComponentPropsWithoutRef<typeof RadixDropdownComponents.RadioItem> & {
+    Omit<ComponentPropsWithoutRef<typeof RadixDropdownComponents.RadioItem>, 'children'> & {
         text: string
         textProps?: Omit<TextProps, 'text'>
     }
->(({ className, children, text, textProps, ...props }, ref) => (
+>(({ className, text, textProps, ...props }, ref) => (
     <RadixDropdownComponents.RadioItem
         ref={ref}
         className={cn(
