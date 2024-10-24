@@ -25,12 +25,12 @@ export const Default: Story = {
     args: {
         variant: 'default',
         children: (
-            <div className="flex flex-col gap-2 p-2">
+            <span className="flex flex-col gap-2 p-2">
                 <Text text="Default" className="text-red-300" />
                 <Text text="Default" className="text-red-400" />
                 <Text text="Default" className="text-red-500" />
                 <Text text="Default" className="text-red-600" />
-            </div>
+            </span>
         ),
     },
 }

@@ -25,6 +25,8 @@ export type ButtonWithChildProps = Omit<BaseButtonProps, 'size'> & ButtonHTMLAtt
 
 export type ButtonProps = ButtonContentProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'>
 
+export type AnchorWithChildProps = Omit<BaseButtonProps, 'size'> & LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>
+
 export type AnchorProps = ButtonContentProps & LinkProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'children'>
 
 export type FilterButtonProps = {

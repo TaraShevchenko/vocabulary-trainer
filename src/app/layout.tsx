@@ -3,6 +3,9 @@ import { type ReactNode } from 'react'
 import { type Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 
+import { getServerSession } from 'next-auth'
+
+import { SessionProvider, authOptions } from 'shared/lib/nextAuth'
 import { TRPCReactProvider } from 'shared/lib/trpc/client'
 import 'shared/styles/globals.css'
 
@@ -33,11 +36,14 @@ export const metadata: Metadata = {
     },
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+    const session = await getServerSession(authOptions)
     return (
         <html lang="en">
             <body className={montserrat.variable}>
-                <TRPCReactProvider>{children}</TRPCReactProvider>
+                <SessionProvider session={session}>
+                    <TRPCReactProvider>{children}</TRPCReactProvider>
+                </SessionProvider>
             </body>
         </html>
     )

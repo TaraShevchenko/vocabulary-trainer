@@ -11,22 +11,28 @@ import { cn } from 'shared/utils/cn'
 
 import logo from 'public/logo.png'
 
-export const Header = () => {
+type HeaderProps = {
+    withNav?: boolean
+}
+
+export const Header = ({ withNav }: HeaderProps) => {
     return (
         <header>
             <Container className={cn('flex h-14 items-center justify-between')}>
                 <div className={cn('flex items-center gap-5')}>
                     <div className={cn('flex items-center gap-4')}>
-                        <Image className={cn('h-auto w-8 mt-1')} src={logo} alt={'logo'} priority={false} />
+                        <Image className={cn('mt-1 h-auto w-8')} src={logo} alt={'logo'} priority={false} />
                         <Text variant={'title'} text={'Vocabulary Trainer'} />
                     </div>
-                    <nav>
-                        <ul className={cn('flex')}>
-                            <li>
-                                <Anchor href={'dashboard'} variant={'link'} text={'Dashboard'} />
-                            </li>
-                        </ul>
-                    </nav>
+                    {withNav && (
+                        <nav>
+                            <ul className={cn('flex')}>
+                                <li>
+                                    <Anchor href={'dashboard'} variant={'link'} text={'Dashboard'} />
+                                </li>
+                            </ul>
+                        </nav>
+                    )}
                 </div>
                 <div className={cn('flex items-center gap-2')}>
                     <ThemeSelector />

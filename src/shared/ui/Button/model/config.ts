@@ -3,7 +3,7 @@ import { type VariantProps, cva } from 'class-variance-authority'
 import { type textVariants } from 'shared/ui/Text'
 
 export const buttonBase = [
-    'inline-flex items-center justify-center whitespace-nowrap rounded-md ring-offset-background transition-colors gap-2',
+    'inline-flex items-center justify-center rounded-md ring-offset-background transition-colors gap-2',
 ]
 
 export const buttonVariants = {

@@ -1,6 +1,7 @@
 export * from './model/config'
 export * from './model/types'
 export { Anchor } from './ui/Anchor'
+export { AnchorWithChild } from './ui/AnchorWithChild'
 export { Button } from './ui/Button'
 export { ButtonWithChild } from './ui/ButtonWithChild'
 export { FiltersButton } from './ui/FiltersButton'

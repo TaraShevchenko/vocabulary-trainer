@@ -6,7 +6,7 @@ import { type Role } from 'entities/User'
 
 import { authOptions } from 'shared/lib/nextAuth'
 
-export async function protectRoute(allowedRoles: Role[]) {
+export const protectRoute = async (allowedRoles: Role[]) => {
     const session = await getServerSession(authOptions)
 
     if (!session) {
@@ -17,5 +17,5 @@ export async function protectRoute(allowedRoles: Role[]) {
         redirect('/forbidden')
     }
 
-    return { session, role: session.user.role }
+    return { session }
 }

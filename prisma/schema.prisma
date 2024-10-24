@@ -63,8 +63,8 @@ model Word {
 }
 
 enum Role {
-  USER
-  ADMIN
+    USER
+    ADMIN
 }
 
 model User {

@@ -7,7 +7,7 @@ import { Container } from 'shared/ui/Container'
 import { Text } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
 
-export default async function AdminDashboard() {
+export default async function Dashboard() {
     await protectRoute([Role.ADMIN])
     return (
         <>
