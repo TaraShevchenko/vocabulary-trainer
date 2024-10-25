@@ -33,6 +33,9 @@
         --ring: 240 4.9% 83.9%;
 
         --radius: 0.5rem;
+
+        --decor: 270 60% 60%;
+        --decor-gradient: linear-gradient(to right, hsl(270 60% 60%), hsl(270 60% 80%), hsl(330 60% 80%));
     }
 
     [data-theme='light'] {
@@ -63,6 +66,9 @@
         --border: 240 5.9% 90%;
         --input: 240 5.9% 90%;
         --ring: 240 10% 3.9%;
+
+        --decor: 270 60% 60%;
+        --decor-gradient: linear-gradient(to right, hsl(270 60% 60%), hsl(270 60% 80%), hsl(330 60% 80%));
     }
 }
 

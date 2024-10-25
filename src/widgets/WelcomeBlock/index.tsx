@@ -4,14 +4,12 @@ import { AnchorWithChild } from 'shared/ui/Button'
 import { Text } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
 
-// TODO: Add Violet colors to tailwind config and change hardcoded colors to tailwind classes that depends by theme
-
 const CARDS_DATA = [
     {
         title: 'Docs',
         desc: 'Access documentation to get started and master Vocabulary Trainer.',
         disabled: true,
-        href: '/docs',
+        href: '/',
         icon: FileText,
     },
     {
@@ -48,7 +46,7 @@ export const WelcomeBlock = () => {
                 <Text
                     className={cn(
                         'text-3xl font-extrabold',
-                        'bg-gradient-to-r from-purple-500 via-purple-300 to-pink-300 bg-clip-text text-transparent',
+                        'bg-decor-gradient bg-clip-text text-transparent',
                         'up500:text-4xl',
                         'up768:text-6xl',
                     )}
@@ -65,13 +63,14 @@ export const WelcomeBlock = () => {
                         target={target}
                         variant="outline"
                         className={cn(
+                            'items-start justify-start',
                             'p-6 hover-yes:hover:bg-accent/50 hover-no:active:bg-accent/50',
                             disabled ? 'pointer-events-none opacity-70' : '',
                         )}
                     >
                         <div className={cn('max-w-full')}>
                             <div className={cn('mb-4 flex items-center')}>
-                                <Icon className={cn('mr-3 h-6 w-6 text-purple-500')} />
+                                <Icon className={cn('text-decor mr-3 h-6 w-6')} />
                                 <Text text={title} variant="title" tag="h2" />
                             </div>
                             <Text className={cn('text-muted-foreground')} text={desc} />

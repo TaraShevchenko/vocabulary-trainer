@@ -1,5 +1,7 @@
 import { ColorItem, ColorPalette, Meta } from '@storybook/blocks'
 
+import './globals.css'
+
 <Meta title="Colors" />
 
 <ColorPalette>
@@ -97,5 +99,18 @@ import { ColorItem, ColorPalette, Meta } from '@storybook/blocks'
         title="Destructive Foreground color"
         subtitle="hsl(var(--destructive-foreground)) - text-destructive-foreground - bg-destructive-foreground"
         colors={{ dark: 'hsl(0 0% 98%)', light: 'hsl(0 0% 98%)' }}
+    />
+    <ColorItem
+        title="Decor color"
+        subtitle="hsl(var(--decor)) - text-decor - bg-decor"
+        colors={{ dark: 'hsl(270 60% 60%)', light: 'hsl(270 60% 60%)' }}
+    />
+    <ColorItem
+        title="Decor Gradient color"
+        subtitle="var(--decor-gradient) - bg-decor-gradient"
+        colors={{
+            dark: 'var(--decor-gradient)',
+            light: 'var(--decor-gradient)',
+        }}
     />
 </ColorPalette>
