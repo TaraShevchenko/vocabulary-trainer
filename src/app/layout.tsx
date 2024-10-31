@@ -13,7 +13,7 @@ const montserrat = Montserrat({ subsets: ['latin'], variable: '--montserrat' })
 
 export const metadata: Metadata = {
     title: 'Vocabulary Trainer',
-    description: 'Train your vocabulary',
+    description: 'test-git',
     icons: [
         { rel: 'apple-touch-icon', sizes: '57x57', url: '/apple-icon-57x57.png' },
         { rel: 'apple-touch-icon', sizes: '60x60', url: '/apple-icon-60x60.png' },
