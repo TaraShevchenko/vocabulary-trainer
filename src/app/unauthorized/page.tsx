@@ -3,6 +3,6 @@ export const metadata = {
     description: 'You should be logged in to access this page',
 }
 
-export default async function Unauthorized() {
+export default function Unauthorized() {
     return <div>Unauthorized Page - You should be logged in to access this page</div>
 }

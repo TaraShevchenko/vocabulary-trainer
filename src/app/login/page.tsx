@@ -5,7 +5,7 @@ export const metadata = {
     description: 'Login to your account using the options below!',
 }
 
-export default async function Login() {
+export default function Login() {
     return (
         <AuthCard title={'Login Account'} subtitle={'Login to your account using the options below!'}>
             <LoginForm />

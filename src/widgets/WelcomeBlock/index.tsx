@@ -35,7 +35,7 @@ const CARDS_DATA = [
 
 export const WelcomeBlock = () => {
     return (
-        <div className={cn('container mx-auto px-4 py-8', 'up768:pt-40')}>
+        <div className={cn('container mx-auto px-4 py-4', 'up768:pt-40')}>
             <h1 className={cn('text-center')}>
                 <Text
                     className={cn('text-3xl font-extrabold', 'up500:text-4xl', 'up768:text-6xl')}
@@ -65,12 +65,12 @@ export const WelcomeBlock = () => {
                         className={cn(
                             'items-start justify-start',
                             'p-6 hover-yes:hover:bg-accent/50 hover-no:active:bg-accent/50',
-                            disabled ? 'pointer-events-none opacity-70' : '',
+                            { 'pointer-events-none opacity-70': disabled },
                         )}
                     >
                         <div className={cn('max-w-full')}>
                             <div className={cn('mb-4 flex items-center')}>
-                                <Icon className={cn('text-decor mr-3 h-6 w-6')} />
+                                <Icon className={cn('mr-3 h-6 w-6 text-decor')} />
                                 <Text text={title} variant="title" tag="h2" />
                             </div>
                             <Text className={cn('text-muted-foreground')} text={desc} />
