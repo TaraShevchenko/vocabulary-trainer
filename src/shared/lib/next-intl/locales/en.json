@@ -38,6 +38,16 @@
     "language": "Language",
     "english": "English",
     "ukrainian": "Ukrainian",
-    "russian": "Russian"
+    "russian": "Russian",
+    "unauthorized_access": "Unauthorized Access",
+    "forbidden_access": "Forbidden Access",
+    "you_do_not_have_permission_to_access_this_page": "You do not have permission to access this page.",
+    "access_denied": "Access Denied",
+    "please_login_to_access_the_page": "Please login to access the page",
+    "insufficient_rights": "Insufficient rights",
+    "you_will_be_redirected_to_the_login_page_in_{countdown}_seconds": "You will be redirected to the Login page in {countdown} seconds.",
+    "please_contact_the_site_administrator_to_obtain_access_rights_to_this_page_you_will_be_redirected_to_dashboard_in_{countdown}_seconds": "Please contact the site administrator to obtain access rights to this page. You will be redirected to Dashboard in {countdown} seconds.",
+    "go_to_{pageName}_page": "Go to {pageName} Page",
+    "login_page_name": "Login"
   }
 }

@@ -1,69 +1,22 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
-import { useRouter } from 'shared/lib/next-intl'
-import { Anchor } from 'shared/ui/Button'
-import { Card, CardFooter, CardHeader } from 'shared/ui/Card'
-import { Text } from 'shared/ui/Text'
-import { cn } from 'shared/utils/cn'
+import { RedirectBlock } from 'features/Auth'
 
 export default function UnauthorizedPage() {
-    const router = useRouter()
-    const [countdown, setCountdown] = useState(15)
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCountdown((prevCount) => {
-                if (prevCount <= 1) {
-                    clearInterval(timer)
-                    router.push('/login')
-                    return 0
-                }
-                return prevCount - 1
-            })
-        }, 1000)
-
-        return () => clearInterval(timer)
-    }, [router])
-
+    const t = useTranslations('global')
     return (
-        <div className={cn('flex min-h-screen items-center justify-center bg-background p-4')}>
-            <Card className={cn('w-full max-w-md')}>
-                <CardHeader>
-                    <Text variant="title" className={cn('text-center')} text={'Unauthorized Access'} />
-                    <Text
-                        variant="muted"
-                        className={cn('text-center')}
-                        text={'You do not have permission to access this page.'}
-                    />
-                </CardHeader>
-                <div
-                    className={cn('mx-10 mb-5 flex h-auto w-auto flex-row rounded-lg border-2 border-destructive p-5')}
-                >
-                    <div
-                        className={cn(
-                            'mr-4 flex h-6 w-6 items-center justify-center rounded-full border-2 border-destructive',
-                        )}
-                    >
-                        <Text variant="bold" className={cn('text-destructive')} text="!" />
-                    </div>
-                    <div className={'flex flex-col'}>
-                        <Text variant="bold" className={cn('text-destructive')} text="Access Denied" />
-                        <Text
-                            variant="default"
-                            className={cn('mt-2 text-destructive')}
-                            text="Please login to access the page"
-                        />
-                    </div>
-                </div>
-                <CardFooter className="flex flex-col items-center space-y-4">
-                    <p className={cn('text-center text-sm text-muted-foreground')}>
-                        You will be redirected to the login page in {countdown} seconds.
-                    </p>
-                    <Anchor href="/login" text={'Go to Login Page'} />
-                </CardFooter>
-            </Card>
-        </div>
+        <RedirectBlock
+            url="/login"
+            title={t('access_denied')}
+            pageName={t('login_page_name')}
+            hint={t('please_login_to_access_the_page')}
+            getWarning={(countdown: number) =>
+                t('you_will_be_redirected_to_the_login_page_in_{countdown}_seconds', {
+                    countdown,
+                })
+            }
+        />
     )
 }
