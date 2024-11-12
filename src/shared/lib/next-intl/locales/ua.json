@@ -38,6 +38,16 @@
     "language": "Мова",
     "english": "Англійська",
     "ukrainian": "Українська",
-    "russian": "Російська"
+    "russian": "Російська",
+    "unauthorized_access": "Неавторизований доступ",
+    "forbidden_access": "Заборонений доступ",
+    "you_do_not_have_permission_to_access_this_page": "У вас немає доступу до цієї сторінки.",
+    "access_denied": "Доступ заборонено",
+    "please_login_to_access_the_page": "Будь ласка, увійдіть до свого облікового запису, щоб отримати доступ до сторінки",
+    "insufficient_rights": "Недостатні права",
+    "you_will_be_redirected_to_the_login_page_in_{countdown}_seconds": "Ви будете перенаправлені на сторінку Вхід через {countdown} секунд.",
+    "please_contact_the_site_administrator_to_obtain_access_rights_to_this_page_you_will_be_redirected_to_dashboard_in_{countdown}_seconds": "Будь ласка, зверніться до адміністратора сайту, щоб отримати права доступу до цієї сторінки. Ви будете перенаправлені на Панель управління через {countdown} секунд.",
+    "go_to_{pageName}_page": "Перейти на сторінку {pageName}",
+    "login_page_name": "Вхід"
   }
 }
