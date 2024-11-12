@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import { useRouter } from 'next/navigation'
-
+import { useRouter } from 'shared/lib/next-intl'
 import { Anchor } from 'shared/ui/Button'
 import { Card, CardFooter, CardHeader } from 'shared/ui/Card'
 import { Text } from 'shared/ui/Text'

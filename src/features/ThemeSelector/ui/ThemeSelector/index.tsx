@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 
 import { SunMoon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 import {
     DropdownMenu,
@@ -22,6 +23,7 @@ const getInitialTheme = () => {
 }
 
 const ThemeSelector = () => {
+    const t = useTranslations('global')
     const [theme, setTheme] = useState(getInitialTheme)
 
     useEffect(() => {
@@ -53,12 +55,12 @@ const ThemeSelector = () => {
         <DropdownMenu>
             <DropdownMenuTrigger icon={SunMoon} buttonProps={{ size: 'iconSm', variant: 'ghost' }} />
             <DropdownMenuContent className={'py-1'} align={'end'}>
-                <DropdownMenuLabel text={'Theme'} />
+                <DropdownMenuLabel text={t('theme')} />
                 <DropdownMenuSeparator />
                 <DropdownMenuRadioGroup value={theme} onValueChange={handleThemeChange}>
-                    <DropdownMenuRadioItem text={'Dark'} value="dark" />
-                    <DropdownMenuRadioItem text={'Light'} value="light" />
-                    <DropdownMenuRadioItem text={'System'} value="system" />
+                    <DropdownMenuRadioItem text={t('dark')} value="dark" />
+                    <DropdownMenuRadioItem text={t('light')} value="light" />
+                    <DropdownMenuRadioItem text={t('system')} value="system" />
                 </DropdownMenuRadioGroup>
             </DropdownMenuContent>
         </DropdownMenu>

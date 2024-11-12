@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "welcome": {
+      "title": "Добро пожаловать",
+      "description": "Добро пожаловать на наш сайт"
+    },
+    "login": {
+      "title": "Войти",
+      "description": "Войдите в свою учетную запись"
+    },
+    "registration": {
+      "title": "Создать учетную запись",
+      "description": "Создать новую учетную запись"
+    },
+    "password_recovery": {
+      "title": "Восстановление пароля",
+      "description": "Восстановите свой пароль"
+    },
+    "dashboard": {
+      "title": "Панель управления",
+      "description": "Доступ к вашей панели управления"
+    }
+  },
+  "global": {
+    "welcome_to": "Добро пожаловать в",
+    "docs": "Документация",
+    "access_documentation_to_get_started_and_master_vocabulary_trainer": "Получите доступ к документации, чтобы начать и освоить Vocabulary Trainer.",
+    "login": "Войти",
+    "sign_in_to_your_account_to_track_your_progress": "Войдите в свою учетную запись, чтобы отслеживать свой прогресс.",
+    "storybook": "Сторибук",
+    "explore_our_component_library_and_ui_design_system_for_vocabulary_trainer": "Изучите нашу библиотеку компонентов и систему дизайна UI для Vocabulary Trainer.",
+    "dashboard": "Панель управления",
+    "view_your_learning_statistics_set_goals_and_manage_your_vocabulary_lists": "Просмотрите свою статистику обучения, установите цели и управляйте своими списками слов.",
+    "theme": "Тема",
+    "dark": "Темный",
+    "light": "Светлый",
+    "system": "Система",
+    "language": "Язык",
+    "english": "Английский",
+    "ukrainian": "Украинский",
+    "russian": "Русский"
+  }
+}

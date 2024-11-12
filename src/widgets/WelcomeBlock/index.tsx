@@ -1,4 +1,5 @@
 import { BookOpen, FileText, LayoutDashboard, LogIn } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 
 import { AnchorWithChild } from 'shared/ui/Button'
 import { Text } from 'shared/ui/Text'
@@ -6,40 +7,41 @@ import { cn } from 'shared/utils/cn'
 
 const CARDS_DATA = [
     {
-        title: 'Docs',
-        desc: 'Access documentation to get started and master Vocabulary Trainer.',
+        title: 'docs',
+        desc: 'access_documentation_to_get_started_and_master_vocabulary_trainer',
         disabled: true,
         href: '/',
         icon: FileText,
     },
     {
-        title: 'Login',
-        desc: 'Sign in to your account to track your progress.',
+        title: 'login',
+        desc: 'sign_in_to_your_account_to_track_your_progress',
         href: '/login',
         icon: LogIn,
     },
     {
-        title: 'Storybook',
-        desc: 'Explore our component library and UI design system for Vocabulary Trainer.',
+        title: 'storybook',
+        desc: 'explore_our_component_library_and_ui_design_system_for_vocabulary_trainer',
         href: 'http://localhost:6006/',
         icon: BookOpen,
         target: '_blank',
     },
     {
-        title: 'Dashboard',
-        desc: 'View your learning statistics, set goals, and manage your vocabulary lists.',
+        title: 'dashboard',
+        desc: 'view_your_learning_statistics_set_goals_and_manage_your_vocabulary_lists',
         href: '/dashboard',
         icon: LayoutDashboard,
     },
 ]
 
-export const WelcomeBlock = () => {
+export const WelcomeBlock = async () => {
+    const t = await getTranslations('global')
     return (
         <div className={cn('container mx-auto px-4 py-4', 'up768:pt-40')}>
             <h1 className={cn('text-center')}>
                 <Text
                     className={cn('text-3xl font-extrabold', 'up500:text-4xl', 'up768:text-6xl')}
-                    text="Welcome to "
+                    text={t('welcome_to')}
                     variant="title"
                     tag="span"
                 />
@@ -50,7 +52,7 @@ export const WelcomeBlock = () => {
                         'up500:text-4xl',
                         'up768:text-6xl',
                     )}
-                    text="Vocabulary Trainer"
+                    text={`${' '}Vocabulary Trainer`}
                     variant="title"
                     tag="span"
                 />
@@ -71,9 +73,9 @@ export const WelcomeBlock = () => {
                         <div className={cn('max-w-full')}>
                             <div className={cn('mb-4 flex items-center')}>
                                 <Icon className={cn('mr-3 h-6 w-6 text-decor')} />
-                                <Text text={title} variant="title" tag="h2" />
+                                <Text text={t(title)} variant="title" tag="h2" />
                             </div>
-                            <Text className={cn('text-muted-foreground')} text={desc} />
+                            <Text className={cn('text-muted-foreground')} text={t(desc)} />
                         </div>
                     </AnchorWithChild>
                 ))}

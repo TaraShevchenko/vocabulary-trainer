@@ -1,5 +1,7 @@
 import Image from 'next/image'
 
+import { getTranslations } from 'next-intl/server'
+
 import { LogoutButton } from 'features/Auth/ui/LogoutButton'
 import { LangSelector } from 'features/LangSelector'
 import { ThemeSelector } from 'features/ThemeSelector'
@@ -15,7 +17,8 @@ type HeaderProps = {
     withNav?: boolean
 }
 
-export const Header = ({ withNav }: HeaderProps) => {
+export const Header = async ({ withNav }: HeaderProps) => {
+    const t = await getTranslations('global')
     return (
         <header>
             <Container className={cn('flex h-14 items-center justify-between')}>
@@ -28,7 +31,7 @@ export const Header = ({ withNav }: HeaderProps) => {
                         <nav>
                             <ul className={cn('flex')}>
                                 <li>
-                                    <Anchor href={'dashboard'} variant={'link'} text={'Dashboard'} />
+                                    <Anchor href={'dashboard'} variant={'link'} text={t('dashboard')} />
                                 </li>
                             </ul>
                         </nav>

@@ -1,13 +1,13 @@
-import { type ReactNode } from 'react'
-
 import { type Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 
 import { getServerSession } from 'next-auth'
 
+import { NextIntlProvider, type NextIntlProviderProps, languages } from 'shared/lib/next-intl'
 import { SessionProvider, authOptions } from 'shared/lib/nextAuth'
 import { TRPCReactProvider } from 'shared/lib/trpc/client'
 import 'shared/styles/globals.css'
+import { cn } from 'shared/utils/cn'
 
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--montserrat' })
 
@@ -36,14 +36,22 @@ export const metadata: Metadata = {
     },
 }
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export const revalidate = 0
+
+export function generateStaticParams() {
+    return languages.map((language) => ({ locale: language }))
+}
+
+export default async function RootLayout({ children, params: { locale } }: NextIntlProviderProps) {
     const session = await getServerSession(authOptions)
     return (
-        <html lang="en">
-            <body className={montserrat.variable}>
-                <SessionProvider session={session}>
-                    <TRPCReactProvider>{children}</TRPCReactProvider>
-                </SessionProvider>
+        <html lang={locale}>
+            <body className={cn(montserrat.variable, 'min-h-screen bg-background')}>
+                <NextIntlProvider params={{ locale }}>
+                    <SessionProvider session={session}>
+                        <TRPCReactProvider>{children}</TRPCReactProvider>
+                    </SessionProvider>
+                </NextIntlProvider>
             </body>
         </html>
     )
