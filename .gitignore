@@ -47,3 +47,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# internationalization
+/src/shared/lib/next-intl/backups
+

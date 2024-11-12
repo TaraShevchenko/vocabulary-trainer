@@ -7,6 +7,7 @@ import { NextIntlProvider, type NextIntlProviderProps, languages } from 'shared/
 import { SessionProvider, authOptions } from 'shared/lib/nextAuth'
 import { TRPCReactProvider } from 'shared/lib/trpc/client'
 import 'shared/styles/globals.css'
+import { cn } from 'shared/utils/cn'
 
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--montserrat' })
 
@@ -42,11 +43,10 @@ export function generateStaticParams() {
 }
 
 export default async function RootLayout({ children, params: { locale } }: NextIntlProviderProps) {
-    console.log('locale', locale)
     const session = await getServerSession(authOptions)
     return (
         <html lang={locale}>
-            <body className={montserrat.variable}>
+            <body className={cn(montserrat.variable, 'min-h-screen bg-background')}>
                 <NextIntlProvider params={{ locale }}>
                     <SessionProvider session={session}>
                         <TRPCReactProvider>{children}</TRPCReactProvider>
