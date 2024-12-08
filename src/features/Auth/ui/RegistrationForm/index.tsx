@@ -26,7 +26,7 @@ export const RegistrationForm = () => {
             </CardContent>
             <CardFooter className="flex-col gap-2">
                 <Button className="w-full" text={'Create account'} disabled />
-                <Anchor href={'/'} className="w-full text-white" variant={'link'} text={'Go to Login'} />
+                <Anchor href={'/login'} className="w-full text-white" variant={'link'} text={'Go to Login'} />
             </CardFooter>
         </>
     )
