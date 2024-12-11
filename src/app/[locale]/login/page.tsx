@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function Login() {
     return (
-        <AuthCard title={'Login Account'} subtitle={'Login to your account using the options below!'}>
+        <AuthCard title={'Login Account Test'} subtitle={'Login to your account using the options below!'}>
             <LoginForm />
         </AuthCard>
     )
