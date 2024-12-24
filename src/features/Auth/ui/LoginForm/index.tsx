@@ -1,34 +1,37 @@
-import { Anchor, Button } from 'shared/ui/Button'
-import { CardContent, CardFooter } from 'shared/ui/Card'
+'use client'
+
+import { Button } from 'shared/ui/Button'
 import { Input } from 'shared/ui/Input'
 
-import { AuthGoogle } from '../AuthGoogle'
-import { AuthVarianceSplitter } from '../AuthVarianceSplitter'
+import { Form } from 'shared/ui/Form'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const loginFormSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(8),
+})
 
 export const LoginForm = () => {
+    const methods = useForm<z.infer<typeof loginFormSchema>>({
+        resolver: zodResolver(loginFormSchema),
+    })
+    const onSubmit = (data: z.infer<typeof loginFormSchema>) => {
+        console.log(data)
+    }
+    
     return (
-        <>
-            <CardContent className="grid gap-4">
-                <AuthGoogle />
-                <AuthVarianceSplitter />
-                <Input
-                    label={'Email'}
-                    inputFieldProps={{ name: 'email', placeholder: 'm@example.com', disabled: true }}
-                />
-                <Input
-                    label={'Password'}
-                    inputFieldProps={{ name: 'password', placeholder: '!Qwer1234', disabled: true }}
-                />
-            </CardContent>
-            <CardFooter className="flex-col gap-2">
-                <Button className="w-full" text={'Login'} disabled />
-                <Anchor
-                    href={'/registration'}
-                    className="w-full text-white"
-                    text={'Register a new Account'}
-                    variant={'link'}
-                />
-            </CardFooter>
-        </>
+        <Form className={'flex flex-col gap-4'} methods={methods} onSubmit={onSubmit}>
+            <Input
+                label={'Email'}
+                inputFieldProps={{ name: 'email', placeholder: 'm@example.com'}}
+            />
+            <Input
+                label={'Password'}
+                inputFieldProps={{ name: 'password', placeholder: '!Qwer1234' }}
+            />
+            <Button className="w-full" text={'Login'} disabled />
+        </Form>
     )
 }

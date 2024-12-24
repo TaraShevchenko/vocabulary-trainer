@@ -23,7 +23,6 @@ export const AuthCard: FC<AuthCardProps> = ({ title, subtitle, children }) => {
             <Card className={'w-[400px]'}>
                 <CardHeader className="space-y-1">
                     <div className={cn('mb-2 flex items-center justify-between')}>
-                        {/* <Logo className={cn('h-9 w-fit')} /> */}
                         <Image className={cn('mt-1 h-auto w-8')} src={logo} alt="Vocabulary Trainer Logo" />
                         <div className={cn('flex items-center gap-2')}>
                             <ThemeSelector />

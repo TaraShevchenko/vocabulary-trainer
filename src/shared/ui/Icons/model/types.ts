@@ -1,4 +1,4 @@
-import type { FC, HTMLAttributes } from 'react'
+import { type LucideIcon, type LucideProps } from 'lucide-react'
 
-export type IconProps = HTMLAttributes<SVGElement>
-export type Icon = FC<IconProps>
+export type Icon = LucideIcon
+export type IconProps = LucideProps

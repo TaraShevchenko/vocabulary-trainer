@@ -2,7 +2,9 @@ import { type ReactNode } from 'react'
 
 import { z } from 'zod'
 
-import { PaginationLimit } from 'shared/types/enums'
+export const Sort = z.enum(['asc', 'desc'])
+
+export const PaginationLimit = z.union([z.literal(10), z.literal(20), z.literal(30), z.literal(40), z.literal(50)])
 
 export const PaginationPayloadScheme = z.object({
     take: PaginationLimit.optional(),
@@ -30,3 +32,5 @@ export const ErrorResponseScheme = z.object({
 export type Children = {
     children: ReactNode
 }
+
+export type XOR<T, U> = T | U extends object ? (T extends U ? never : T) | (U extends T ? never : U) : T | U
