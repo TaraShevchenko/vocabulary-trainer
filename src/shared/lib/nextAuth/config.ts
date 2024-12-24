@@ -1,10 +1,10 @@
 import { PrismaAdapter } from '@auth/prisma-adapter'
+import { type User as PrismaUser } from '@prisma/client'
+import { compare } from 'bcryptjs'
 import { type DefaultSession, type NextAuthOptions, getServerSession } from 'next-auth'
 import { type Adapter } from 'next-auth/adapters'
-// import CredentialsProvider from 'next-auth/providers/credentials'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
-
-import { type Role } from 'entities/User'
 
 import { db } from 'shared/lib/prisma'
 import { env } from 'shared/utils/env'
@@ -19,13 +19,12 @@ declare module 'next-auth' {
     interface Session extends DefaultSession {
         user: {
             id: string
-            role: Role
+            role: PrismaUser['role']
         } & DefaultSession['user']
     }
 
-    interface User {
-        role: Role
-    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    interface User extends Omit<PrismaUser, 'password'> {}
 }
 
 /**
@@ -43,34 +42,53 @@ export const authOptions: NextAuthOptions = {
                 role: user.role,
             },
         }),
+        jwt: ({ token }) => {
+            return token
+        },
     },
     adapter: PrismaAdapter(db) as Adapter,
     providers: [
+        CredentialsProvider({
+            name: 'Credentials',
+            credentials: {
+                email: { label: 'Email', type: 'email' },
+                password: { label: 'Password', type: 'password' },
+            },
+            async authorize(credentials) {
+                if (!credentials?.email || !credentials?.password) {
+                    return null
+                }
+
+                const user = await db.user.findUnique({
+                    where: { email: credentials.email },
+                })
+
+                if (!user?.password) {
+                    return null
+                }
+
+                const isPasswordValid = await compare(credentials.password, user.password)
+
+                if (!isPasswordValid) {
+                    return null
+                }
+
+                const { password: _, ...userWithoutPassword } = user
+                return userWithoutPassword as Omit<PrismaUser, 'password'>
+            },
+        }),
         GoogleProvider({
             name: 'Google',
             clientId: env.GOOGLE_CLIENT_ID,
             clientSecret: env.GOOGLE_CLIENT_SECRET,
         }),
-        // CredentialsProvider({
-        // name: 'Credentials',
-        // credentials: {
-        //     username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
-        //     password: { label: 'Password', type: 'password' },
-        // },
-        // async authorize(credentials, req) {
-        // const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' }
-
-        // if (user) {
-        // Any object returned will be saved in `user` property of the JWT
-        // return user
-        // } else {
-        // If you return null then an error will be displayed advising the user to check their details.
-        // return null
-        // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-        // }
-        // },
-        // }),
     ],
+    session: {
+        strategy: 'jwt',
+    },
+    pages: {
+        signIn: '/login',
+    },
 }
 
 /**

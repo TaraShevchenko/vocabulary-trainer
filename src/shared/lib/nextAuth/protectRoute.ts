@@ -3,8 +3,8 @@ import { getLocale } from 'next-intl/server'
 
 import { type Role } from 'entities/User'
 
-import { redirect } from 'shared/lib/next-intl'
 import { authOptions } from 'shared/lib/nextAuth'
+import { redirect } from 'shared/lib/nextIntl'
 
 export const protectRoute = async (allowedRoles: Role[]) => {
     const locale = await getLocale()
