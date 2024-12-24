@@ -2,7 +2,7 @@ import { Button, type ButtonProps } from 'shared/ui/Button'
 import { type IconProps } from 'shared/ui/Icon'
 import { cn } from 'shared/utils/cn'
 
-import { type InputIconProps } from '../../types'
+import { type InputIconProps } from '../../model/types'
 
 const inputIconClassNames = (side: 'left' | 'right') =>
     cn(

@@ -1,27 +1,36 @@
-'use client'
+'use client';
 
-import { type HTMLInputTypeAttribute, type InputHTMLAttributes, forwardRef, useMemo, useState } from 'react'
+import { type HTMLInputTypeAttribute, type InputHTMLAttributes, forwardRef, useMemo, useState } from 'react';
 
-import { type VariantProps } from 'class-variance-authority'
 
-import { Text } from 'shared/ui/Text'
-import { cn } from 'shared/utils/cn'
 
-import { handleGetTypeAndVariantName, switchIcon, switchVariants } from './config'
+import { type VariantProps } from 'class-variance-authority';
 
-export type CheckboxProps = {
-    name: string
-    label?: string
-    isError?: boolean
+
+
+import { Text } from 'shared/ui/Text';
+import { cn } from 'shared/utils/cn';
+
+
+
+import { handleGetTypeAndVariantName, switchIcon, switchVariants } from './config';
+
+
+export type SwitchProps = {
     className?: string
-    buttonClassName?: string
-    labelClassName?: string
-} & VariantProps<typeof switchVariants> &
-    InputHTMLAttributes<HTMLInputElement>
+    label?: string
+    labelTextProps?: TextProps
+    inputFieldProps?: InputHTMLAttributes<HTMLInputElement>
+    leftIcon?: Icon
+    leftIconProps?: IconOrButtonProps
+    rightIcon?: Icon
+    rightIconProps?: IconOrButtonProps
+    hints?: InputHint[]
+    isError?: boolean
+} & VariantProps<typeof switchVariants>
 
-export const Switch = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>((props, ref) => {
     const {
-        name,
         type = 'checkbox',
         variant = 'bordered',
         checked,

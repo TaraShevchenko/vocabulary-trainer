@@ -1,19 +1,24 @@
 import { forwardRef } from 'react'
 
-import { type InputProps } from '../../model/types'
 import { Text } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
 
+import { type InputProps } from '../../model/types'
+import { InputIcon } from '../InputIcon'
+
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const { className, label, inputFieldProps, leftIcon, leftIconProps, rightIcon, rightIconProps, hints } = props
+    const { className, label, inputFieldProps, leftIcon, leftIconProps, rightIcon, rightIconProps, hints, isError } =
+        props
     const { className: inputFieldClassName, type = 'text', id: inputFieldId, ...otherProps } = inputFieldProps ?? {}
     const id = inputFieldId ?? crypto.randomUUID()
+
+    console.log(hints, isError)
 
     return (
         <label htmlFor={id} className={cn('flex flex-col gap-1', className)}>
             {!!label && <Text text={label} variant={'smBold'} />}
-            
-            <span className={cn('relative h-12')}>
+
+            <span className={cn('relative')}>
                 <input
                     id={id}
                     ref={ref}

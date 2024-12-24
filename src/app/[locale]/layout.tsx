@@ -3,8 +3,8 @@ import { Montserrat } from 'next/font/google'
 
 import { getServerSession } from 'next-auth'
 
-import { NextIntlProvider, type NextIntlProviderProps, languages } from 'shared/lib/nextIntl'
 import { SessionProvider, authOptions } from 'shared/lib/nextAuth'
+import { NextIntlProvider, type NextIntlProviderProps, languages } from 'shared/lib/nextIntl'
 import { TRPCReactProvider } from 'shared/lib/trpc/client'
 import 'shared/styles/globals.css'
 import { cn } from 'shared/utils/cn'

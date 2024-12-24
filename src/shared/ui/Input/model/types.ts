@@ -2,7 +2,7 @@ import { type InputHTMLAttributes } from 'react'
 
 import type { XOR } from 'shared/types'
 import type { ButtonProps } from 'shared/ui/Button'
-import type { Icon, IconProps } from 'shared/ui/Icons'
+import type { Icon, IconProps } from 'shared/ui/Icon'
 import { type TextProps } from 'shared/ui/Text'
 
 export type IconOrButtonProps = XOR<IconProps, Omit<ButtonProps, 'icon'>>

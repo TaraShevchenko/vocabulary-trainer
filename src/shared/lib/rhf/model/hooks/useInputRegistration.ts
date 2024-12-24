@@ -1,30 +1,18 @@
-import { useMemo } from 'react'
-
 import { useFormContext } from 'react-hook-form'
 
-import { type InputHint } from 'shared/ui/Input'
-
-export const useInputRegistration = ({ name, hints }: { name: string; hints?: InputHint[] }) => {
+export const useInputRegistration = ({ name }: { name: string }) => {
     const {
         register,
         formState: { errors },
     } = useFormContext()
 
-    const errorMessage =
-        !!errors[name]?.message && typeof errors[name]?.message === 'string' ? errors[name]?.message : ''
-
-    const hintsWithErrors = useMemo(() => {
-        const errorHint = {
-            text: errorMessage,
-            isError: true,
-        }
-
-        return hints?.length ? [...hints, errorHint] : [errorHint]
-    }, [errorMessage, hints])
+    const isError = !!errors[name]?.message && typeof errors[name]?.message === 'string'
+    const errorMessage = isError ? (errors[name]?.message as string) : ''
+    const customError = !!errors[name]?.message ? { text: errorMessage, isError: true } : undefined
 
     return {
         register,
         errorMessage,
-        hintsWithErrors,
+        customError,
     }
 }

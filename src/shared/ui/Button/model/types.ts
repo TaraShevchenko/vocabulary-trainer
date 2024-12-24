@@ -3,7 +3,7 @@ import { type AnchorHTMLAttributes, type ButtonHTMLAttributes } from 'react'
 import { type VariantProps } from 'class-variance-authority'
 
 import { type LinkProps } from 'shared/lib/nextIntl'
-import { type Icon, type IconProps } from 'shared/ui/Icons'
+import { type Icon, type IconProps } from 'shared/ui/Icon'
 import { type TextProps } from 'shared/ui/Text'
 
 import { type buttonCva } from './config'
