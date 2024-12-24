@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 
-import { Link } from 'shared/lib/next-intl'
+import { Link } from 'shared/lib/nextIntl'
 import { cn } from 'shared/utils/cn'
 
 import { buttonCva } from '../../model/config'

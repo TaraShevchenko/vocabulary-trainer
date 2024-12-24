@@ -3,7 +3,7 @@
 import { Languages } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 
-import { Language, type LanguageType, usePathname, useRouter } from 'shared/lib/next-intl'
+import { Language, type LanguageType, usePathname, useRouter } from 'shared/lib/nextIntl'
 import {
     DropdownMenu,
     DropdownMenuContent,

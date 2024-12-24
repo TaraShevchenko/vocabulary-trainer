@@ -3,7 +3,7 @@ import { type AnchorHTMLAttributes, type ButtonHTMLAttributes } from 'react'
 import { type VariantProps } from 'class-variance-authority'
 import { type LucideIcon } from 'lucide-react'
 
-import { type LinkProps } from 'shared/lib/next-intl'
+import { type LinkProps } from 'shared/lib/nextIntl'
 import { type Icon, type IconProps } from 'shared/ui/Icons'
 import { type TextProps } from 'shared/ui/Text'
 

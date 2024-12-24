@@ -1,6 +1,6 @@
 import createNextIntlPlugin from 'next-intl/plugin'
 
-const withNextIntl = createNextIntlPlugin('./src/shared/lib/next-intl/config.ts')
+const withNextIntl = createNextIntlPlugin('./src/shared/lib/nextIntl/config.ts')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {}
