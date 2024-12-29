@@ -17,11 +17,13 @@ export type InputHint = {
     isError?: boolean
 }
 
+export type InputFieldProps = InputHTMLAttributes<HTMLInputElement>
+
 export type InputProps = {
     className?: string
     label?: string
     labelTextProps?: TextProps
-    inputFieldProps?: InputHTMLAttributes<HTMLInputElement>
+    inputFieldProps?: InputFieldProps
     leftIcon?: Icon
     leftIconProps?: IconOrButtonProps
     rightIcon?: Icon
@@ -30,7 +32,11 @@ export type InputProps = {
     isError?: boolean
 }
 
+export type PasswordFieldProps = Omit<InputFieldProps, 'type'>
+
 export type PasswordInputProps = Omit<InputProps, 'inputFieldProps' | 'rightIcon' | 'rightIconProps'> & {
-    inputFieldProps?: Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'>
-    rightIconProps?: Omit<ButtonProps, 'icon'>
+    inputFieldProps?: PasswordFieldProps
+    rightIconProps?: Omit<ButtonProps, 'icon' | 'onClick'>
+    isShown: boolean
+    toggleShown: () => void
 }

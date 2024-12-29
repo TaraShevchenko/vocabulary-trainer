@@ -7,10 +7,10 @@ import { type InputIconProps } from '../../model/types'
 const inputIconClassNames = (side: 'left' | 'right') =>
     cn(
         'text-input-foreground',
-        'h-7 w-auto p-2 rounded-xxs',
+        'h-4 w-auto',
         'absolute top-1/2 -translate-y-1/2',
-        { 'left-4': side === 'left' },
-        { 'right-4': side === 'right' },
+        { 'left-2': side === 'left' },
+        { 'right-2': side === 'right' },
     )
 
 export const InputIcon = (props: InputIconProps) => {

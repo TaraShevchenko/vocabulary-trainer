@@ -1,20 +1,33 @@
 'use client'
 
-import { PasswordInput as ClearInput, type PasswordInputProps } from 'shared/ui/Input'
+import { useState } from 'react'
+
+import { PasswordInput as ClearPasswordInput, type PasswordFieldProps, type PasswordInputProps } from 'shared/ui/Input'
 
 import { useInputRegistration } from '../../model/hooks/useInputRegistration'
 
-type InputPropsWithRequiredName = {
-    name: string
-} & PasswordInputProps
+type InputPropsWithRequiredName = Omit<PasswordInputProps, 'inputFieldProps' | 'isShown' | 'toggleShown'> & {
+    inputFieldProps: {
+        name: string
+    } & Omit<PasswordFieldProps, 'name'>
+}
 
-export const PasswordInput = ({ name, hints, inputFieldProps, ...otherProps }: InputPropsWithRequiredName) => {
-    const { register, errorMessage, hintsWithErrors } = useInputRegistration({ name, hints })
+export const PasswordInput = ({ hints, inputFieldProps, ...otherProps }: InputPropsWithRequiredName) => {
+    const { register, errorMessage, customError } = useInputRegistration({ name: inputFieldProps.name })
+
+    const [isShown, setIsShown] = useState(false)
+    const toggleShown = () => setIsShown(!isShown)
+
     return (
-        <ClearInput
+        <ClearPasswordInput
             isError={!!errorMessage}
-            hints={hintsWithErrors}
-            inputFieldProps={{ ...inputFieldProps, ...register(name) }}
+            hints={[...(customError ? [customError] : []), ...(hints ?? [])]}
+            inputFieldProps={{
+                ...inputFieldProps,
+                ...register(inputFieldProps.name),
+            }}
+            isShown={isShown}
+            toggleShown={toggleShown}
             {...otherProps}
         />
     )

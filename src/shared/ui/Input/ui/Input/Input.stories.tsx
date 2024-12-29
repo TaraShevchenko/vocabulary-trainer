@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import 'shared/styles/globals.css'
 
-import { Input } from './ui/Input'
+import { Input } from './index'
 
 const meta: Meta<typeof Input> = {
     title: 'Shared/Input',
