@@ -6,7 +6,7 @@ import { useLocale } from 'next-intl'
 import { Button } from 'shared/ui/Button'
 import { Google } from 'shared/ui/Icon'
 
-export const AuthGoogle = async () => {
+export const AuthGoogle = () => {
     const locale = useLocale()
 
     const handleSignIn = () => {

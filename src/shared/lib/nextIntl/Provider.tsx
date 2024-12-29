@@ -1,6 +1,6 @@
 import { type AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
 
-import { type Children } from 'shared/types/types'
+import { type Children } from 'shared/types'
 
 import { type LanguageType } from './config'
 import enJson from './locales/en.json'
