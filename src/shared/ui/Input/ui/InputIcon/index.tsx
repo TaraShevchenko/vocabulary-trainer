@@ -9,8 +9,8 @@ const inputIconClassNames = (side: 'left' | 'right') =>
         'text-input-foreground',
         'h-4 w-auto',
         'absolute top-1/2 -translate-y-1/2',
-        { 'left-2': side === 'left' },
-        { 'right-2': side === 'right' },
+        { 'left-3': side === 'left' },
+        { 'right-3': side === 'right' },
     )
 
 export const InputIcon = (props: InputIconProps) => {

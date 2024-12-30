@@ -26,8 +26,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
                         'hover-yes:hover:border-muted-foreground/40 hover-no:active:border-muted-foreground/40',
                         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                         'disabled:cursor-not-allowed disabled:opacity-50',
-                        { 'pl-8': !!leftIcon },
-                        { 'pr-8': !!rightIcon },
+                        { 'pl-9': !!leftIcon },
+                        { 'pr-9': !!rightIcon },
                         inputFieldClassName,
                     )}
                     {...otherProps}
