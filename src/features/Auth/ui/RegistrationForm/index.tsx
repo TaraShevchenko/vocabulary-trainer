@@ -1,5 +1,6 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -10,19 +11,26 @@ const registrationFormSchema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
     confirmPassword: z.string().min(8),
+}).refine((data) => data.password === data.confirmPassword, {
+    path: ['confirmPassword'],
+    message: 'Passwords do not match',
 })
 
+type FormData = z.infer<typeof registrationFormSchema>
+
 export const RegistrationForm = () => {
-    const methods = useForm<z.infer<typeof registrationFormSchema>>({
+
+    const methods = useForm<FormData>({
         mode: 'onSubmit',
         defaultValues: {
             email: '',
             password: '',
             confirmPassword: '',
         },
+        resolver: zodResolver(registrationFormSchema),
     })
 
-    const onSubmit = (data: z.infer<typeof registrationFormSchema>) => {
+    const onSubmit = (data: FormData) => {
         console.log(data)
     }
 
@@ -32,9 +40,13 @@ export const RegistrationForm = () => {
             <PasswordInput label={'Password'} inputFieldProps={{ name: 'password', placeholder: '!Qwer1234' }} />
             <PasswordInput
                 label={'Confirm Password'}
-                inputFieldProps={{ name: 'password', placeholder: '!Qwer1234' }}
+                inputFieldProps={{ name: 'confirmPassword', placeholder: '!Qwer1234' }}
             />
-            <Button className="w-full" text={'Create account'} />
+            <Button 
+                type={'submit'} 
+                className="w-full" 
+                text={'Create account'}
+            />
         </Form>
     )
 }

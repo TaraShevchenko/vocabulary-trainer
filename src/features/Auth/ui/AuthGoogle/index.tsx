@@ -11,7 +11,7 @@ export const AuthGoogle = () => {
 
     const handleSignIn = () => {
         signIn('google', { callbackUrl: `/${locale}/dashboard` }).catch((error) => {
-            console.error('Sign-in error:', error)
+            console.error('Sign-in google error:', error)
         })
     }
 

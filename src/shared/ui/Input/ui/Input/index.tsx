@@ -38,7 +38,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             {!!hints?.length && (
                 <span className={cn('flex flex-col')}>
                     {hints.map(({ text, isError }) => (
-                        <Text key={text} className={cn({ 'text-destructive+': isError })} text={text} />
+                        <Text key={text} className={cn({ 'text-destructive': isError })} text={text} />
                     ))}
                 </span>
             )}

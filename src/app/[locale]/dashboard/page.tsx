@@ -1,6 +1,6 @@
-import { Header } from 'widgets/Header'
+import { Role } from '@prisma/client'
 
-import { Role } from 'entities/User'
+import { Header } from 'widgets/Header'
 
 import { protectRoute } from 'shared/lib/nextAuth/protectRoute'
 import { Container } from 'shared/ui/Container'

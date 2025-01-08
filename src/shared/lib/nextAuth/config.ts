@@ -33,20 +33,18 @@ declare module 'next-auth' {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-    callbacks: {
-        session: ({ session, user }) => ({
-            ...session,
-            user: {
-                ...session.user,
-                id: user.id,
-                role: user.role,
-            },
-        }),
-        jwt: ({ token }) => {
-            return token
-        },
-    },
     adapter: PrismaAdapter(db) as Adapter,
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: 'jwt',
+        maxAge: 30 * 24 * 60 * 60,
+    },
+    jwt: {
+        maxAge: 30 * 24 * 60 * 60,
+    },
+    pages: {
+        signIn: '/en/login',
+    },
     providers: [
         CredentialsProvider({
             name: 'Credentials',
@@ -68,12 +66,13 @@ export const authOptions: NextAuthOptions = {
                 }
 
                 const isPasswordValid = await compare(credentials.password, user.password)
-
+                console.log('isPasswordValid:', isPasswordValid)
                 if (!isPasswordValid) {
                     return null
                 }
 
                 const { password: _, ...userWithoutPassword } = user
+                console.log('userWithoutPassword:', userWithoutPassword)
                 return userWithoutPassword as Omit<PrismaUser, 'password'>
             },
         }),
@@ -83,11 +82,33 @@ export const authOptions: NextAuthOptions = {
             clientSecret: env.GOOGLE_CLIENT_SECRET,
         }),
     ],
-    session: {
-        strategy: 'jwt',
-    },
-    pages: {
-        signIn: '/login',
+    callbacks: {
+        async session(session) {
+            const { session: sessionData } = session ?? {}
+
+            const userFromDB = await db.user.findUnique({
+                where: { email: sessionData?.user?.email ?? '' },
+            })
+
+            return {
+                ...sessionData,
+                user: {
+                    ...sessionData?.user,
+                    id: userFromDB?.id,
+                    role: userFromDB?.role,
+                },
+            }
+        },
+        async jwt(jwt) {
+            const { token, account, user } = jwt ?? {}
+
+            return {
+                ...token,
+                accessToken: account?.access_token,
+                id: user?.id,
+                role: user?.role,
+            }
+        },
     },
 }
 
