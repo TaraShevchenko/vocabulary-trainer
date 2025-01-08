@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { type Children } from 'shared/types/types'
+import { type Children } from 'shared/types'
 import { Text } from 'shared/ui/Text'
 
 export const PaginationPerPageSelectContainer: FC<Children> = ({ children }) => (

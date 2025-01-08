@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import { type z } from 'zod'
 
-import { type PaginationLimit } from 'shared/types/enums'
+import { type PaginationLimit } from 'shared/types'
 import { Skeleton } from 'shared/ui/Skeleton'
 import { Text } from 'shared/ui/Text'
 

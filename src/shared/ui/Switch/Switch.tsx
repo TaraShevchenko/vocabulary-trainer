@@ -1,30 +1,24 @@
-'use client';
+'use client'
 
-import { type HTMLInputTypeAttribute, type InputHTMLAttributes, forwardRef, useMemo, useState } from 'react';
+import { type HTMLInputTypeAttribute, type InputHTMLAttributes, forwardRef, useMemo, useState } from 'react'
 
+import { type VariantProps } from 'class-variance-authority'
 
+import { Text, type TextProps } from 'shared/ui/Text'
+import { cn } from 'shared/utils/cn'
 
-import { type VariantProps } from 'class-variance-authority';
-
-
-
-import { Text } from 'shared/ui/Text';
-import { cn } from 'shared/utils/cn';
-
-
-
-import { handleGetTypeAndVariantName, switchIcon, switchVariants } from './config';
-
+import { type InputHint } from '../Input/model/types'
+import { handleGetTypeAndVariantName, switchIcon, switchVariants } from './config'
 
 export type SwitchProps = {
     className?: string
     label?: string
     labelTextProps?: TextProps
     inputFieldProps?: InputHTMLAttributes<HTMLInputElement>
-    leftIcon?: Icon
-    leftIconProps?: IconOrButtonProps
-    rightIcon?: Icon
-    rightIconProps?: IconOrButtonProps
+    // leftIcon?: Icon
+    // leftIconProps?: IconOrButtonProps
+    // rightIcon?: Icon
+    // rightIconProps?: IconOrButtonProps
     hints?: InputHint[]
     isError?: boolean
 } & VariantProps<typeof switchVariants>
@@ -33,14 +27,13 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>((props, ref) => 
     const {
         type = 'checkbox',
         variant = 'bordered',
-        checked,
         className,
-        onChange,
         label,
-        labelClassName,
-        buttonClassName,
+        inputFieldProps,
+        labelTextProps,
         ...otherProps
     } = props
+    const { checked, onChange, name } = inputFieldProps ?? {}
 
     const typeAndVariantName = useMemo(() => handleGetTypeAndVariantName(type, variant), [type, variant])
     const Icon = useMemo(() => (typeAndVariantName ? switchIcon[typeAndVariantName] : undefined), [typeAndVariantName])
@@ -55,10 +48,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>((props, ref) => 
     }
 
     return (
-        <span className={cn('relative flex items-center gap-3', className)}>
-            <button className={cn(switchVariants({ type, variant, active }), buttonClassName)}>
+        <label className={cn('relative flex items-center gap-3', className)} htmlFor={name}>
+            <span className={cn(switchVariants({ type, variant, active }))}>
                 {Icon && <Icon className={cn('transition', active ? 'opacity-100' : 'opacity-0')} />}
-            </button>
+            </span>
+            {!!label && <Text text={label} {...labelTextProps} />}
             <input
                 {...otherProps}
                 type={type as HTMLInputTypeAttribute}
@@ -68,12 +62,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>((props, ref) => 
                 checked={checked}
                 className={cn('absolute opacity-0', className)}
             />
-            {!!label && (
-                <label htmlFor={name} className={cn(labelClassName)}>
-                    <Text text={label} />
-                </label>
-            )}
-        </span>
+        </label>
     )
 })
 Switch.displayName = 'Switch'

@@ -2,7 +2,7 @@ import { type FC } from 'react'
 
 import { type z } from 'zod'
 
-import { PaginationLimit } from 'shared/types/enums'
+import { PaginationLimit } from 'shared/types'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'shared/ui/Select'
 import { PaginationPerPageSelectContainer } from 'shared/ui/Table/ui/Pagination/ui/PaginationPerPageSelect/ui/PaginationPerPageSelectContainer'
 

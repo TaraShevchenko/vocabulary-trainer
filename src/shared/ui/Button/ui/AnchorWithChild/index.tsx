@@ -11,7 +11,7 @@ export const AnchorWithChild = forwardRef<HTMLAnchorElement, AnchorWithChildProp
         const activeByVariant = isActive ? variant : undefined
         return (
             <Link
-                className={cn(buttonCva({ variant, activeByVariant, size: 'auto' }), className)}
+                className={cn(buttonCva({ variant, activeByVariant, size: 'fit' }), className)}
                 ref={ref}
                 {...otherProps}
             >

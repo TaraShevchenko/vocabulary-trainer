@@ -18,7 +18,9 @@ export const Default: Story = {
         type: 'checkbox',
         variant: 'bordered',
         label: 'Bordered checkbox',
-        name: 'BorderedCheckbox',
+        inputFieldProps: {
+            name: 'BorderedCheckbox',
+        },
     },
 }
 
@@ -27,7 +29,9 @@ export const BorderedRadio: Story = {
         type: 'radio',
         variant: 'bordered',
         label: 'Bordered radio',
-        name: 'BorderedRadio',
+        inputFieldProps: {
+            name: 'BorderedRadio',
+        },
     },
 }
 
@@ -36,7 +40,9 @@ export const ClearCheckbox: Story = {
         type: 'checkbox',
         variant: 'clear',
         label: 'Clear checkbox',
-        name: 'ClearCheckbox',
+        inputFieldProps: {
+            name: 'ClearCheckbox',
+        },
     },
 }
 
@@ -45,6 +51,8 @@ export const ClearRadio: Story = {
         type: 'radio',
         variant: 'clear',
         label: 'Clear radio',
-        name: 'ClearRadio',
+        inputFieldProps: {
+            name: 'ClearRadio',
+        },
     },
 }

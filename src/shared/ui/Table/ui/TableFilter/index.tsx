@@ -61,7 +61,7 @@ export const TableFilter = ({
                         <CommandGroup>
                             {filters.map(({ name, value, isActive }) => (
                                 <CommandItem key={value} onSelect={handleOnSelect}>
-                                    <Switch name={value} label={name} checked={isActive} />
+                                    <Switch inputFieldProps={{ name: value, checked: isActive }} label={name} />
                                 </CommandItem>
                             ))}
                         </CommandGroup>

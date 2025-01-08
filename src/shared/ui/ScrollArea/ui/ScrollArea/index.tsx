@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, type ElementRef, forwardRef } from 'reac
 
 import { Corner, Root, Viewport } from '@radix-ui/react-scroll-area'
 
-import { type Children } from 'shared/types/types'
+import { type Children } from 'shared/types'
 import { cn } from 'shared/utils/cn'
 
 import { ScrollBar, type ScrollbarClassNames, type ScrollbarProps } from '../ScrollBar'

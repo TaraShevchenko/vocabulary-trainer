@@ -2,7 +2,7 @@ import { type FC } from 'react'
 
 import type { z } from 'zod'
 
-import { type PaginationResponseScheme } from 'shared/types/types'
+import { type PaginationResponseScheme } from 'shared/types'
 import { PaginationPerPageSelect } from 'shared/ui/Table/ui/Pagination/ui/PaginationPerPageSelect'
 
 import { PaginationContainer } from '../PaginationContainer'
