@@ -35,9 +35,9 @@ export const buttonVariants = {
     size: {
         default: 'h-10 px-4 py-2',
         sm: 'h-8 px-3',
-        icon: 'h-10 w-10',
-        iconSm: 'h-8 w-8',
-        auto: 'h-auto w-auto',
+        icon: 'size-10',
+        iconSm: 'size-8',
+        fit: 'size-fit',
     },
 }
 
@@ -71,7 +71,7 @@ export const TEXT_PROPS_BY_BUTTON_SIZE: Record<
     sm: 'sm',
     icon: 'default',
     iconSm: 'default',
-    auto: 'default',
+    fit: 'default',
 }
 
 export const ICON_COLOR_BY_BUTTON_VARIANT: Record<

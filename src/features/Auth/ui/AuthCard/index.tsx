@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { LangSelector } from 'features/LangSelector'
 import { ThemeSelector } from 'features/ThemeSelector'
 
-import { type Children } from 'shared/types/types'
+import { type Children } from 'shared/types'
 import { Card, CardDescription, CardHeader, CardTitle } from 'shared/ui/Card'
 import { Text } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
@@ -24,7 +24,7 @@ export const AuthCard: FC<AuthCardProps> = ({ title, subtitle, children }) => {
                 <CardHeader className="space-y-1">
                     <div className={cn('mb-2 flex items-center justify-between')}>
                         <Image className={cn('mt-1 h-auto w-8')} src={logo} alt="Vocabulary Trainer Logo" />
-                        <div className={cn('flex items-center gap-2')}>
+                        <div className={cn('flex items-center gap-1')}>
                             <ThemeSelector />
                             <LangSelector />
                         </div>

@@ -21,8 +21,6 @@ export const PaginationResponseScheme = z.object({
 export const ErrorResponseScheme = z.object({
     status: z.number(),
     data: z.object({
-        timestamp: z.string().datetime(),
-        path: z.string(),
         message: z.string(),
         messageCode: z.number(),
         originalError: z.any().optional(),

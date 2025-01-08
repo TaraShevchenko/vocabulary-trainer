@@ -20,9 +20,10 @@ export default function Login() {
             <CardFooter className="flex-col gap-2">
                 <Anchor
                     href={'/registration'}
-                    className="w-full text-white"
                     text={'Register a new Account'}
+                    className={'text-white'}
                     variant={'link'}
+                    size={'fit'}
                 />
             </CardFooter>
         </AuthCard>

@@ -14,7 +14,7 @@ export default function Registration() {
                 <RegistrationForm />
             </CardContent>
             <CardFooter className="flex-col gap-2">
-                <Anchor href={'/login'} className="w-full text-white" variant={'link'} text={'Go to Login'} />
+                <Anchor href={'/login'} text={'Go to Login'} className={'text-white'} variant={'link'} size={'fit'} />
             </CardFooter>
         </AuthCard>
     )

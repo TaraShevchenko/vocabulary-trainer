@@ -2,36 +2,42 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import toast from 'react-hot-toast'
+import type { z } from 'zod'
+
+import { useLogin } from 'features/Auth/model/hooks/useLogin'
 
 import { Form, Input, PasswordInput } from 'shared/lib/rhf'
+import { api } from 'shared/lib/trpc/client'
 import { Button } from 'shared/ui/Button'
 
-const registrationFormSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8),
-    confirmPassword: z.string().min(8),
-}).refine((data) => data.password === data.confirmPassword, {
-    path: ['confirmPassword'],
-    message: 'Passwords do not match',
-})
-
-type FormData = z.infer<typeof registrationFormSchema>
+import { RegistrationFormSchema } from '../../model/schemes'
 
 export const RegistrationForm = () => {
-
-    const methods = useForm<FormData>({
+    const methods = useForm<z.infer<typeof RegistrationFormSchema>>({
         mode: 'onSubmit',
         defaultValues: {
             email: '',
             password: '',
             confirmPassword: '',
         },
-        resolver: zodResolver(registrationFormSchema),
+        resolver: zodResolver(RegistrationFormSchema),
     })
 
-    const onSubmit = (data: FormData) => {
-        console.log(data)
+    const { mutate, isPending } = api.auth.register.useMutation()
+
+    const { handleLogin } = useLogin()
+
+    const onSuccess = async (data: z.infer<typeof RegistrationFormSchema>) => {
+        await handleLogin({ email: data.email, password: data.password })
+        methods.reset()
+    }
+
+    const onSubmit = (data: z.infer<typeof RegistrationFormSchema>) => {
+        mutate(data, {
+            onSuccess: () => void onSuccess(data),
+            onError: (error) => toast.error(error.message),
+        })
     }
 
     return (
@@ -42,11 +48,7 @@ export const RegistrationForm = () => {
                 label={'Confirm Password'}
                 inputFieldProps={{ name: 'confirmPassword', placeholder: '!Qwer1234' }}
             />
-            <Button 
-                type={'submit'} 
-                className="w-full" 
-                text={'Create account'}
-            />
+            <Button disabled={isPending} type={'submit'} className="w-full" text={'Create account'} />
         </Form>
     )
 }

@@ -1,53 +1,29 @@
 'use client'
 
-import { useEffect } from 'react'
-
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signIn, useSession } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import type { z } from 'zod'
 
-import { useRouter } from 'shared/lib/nextIntl'
+import { useLogin } from 'features/Auth/model/hooks/useLogin'
+
 import { Form, Input, PasswordInput } from 'shared/lib/rhf'
 import { Button } from 'shared/ui/Button'
 
-const loginFormSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8),
-})
+import { LoginFormSchema } from '../../model/schemes'
 
 export const LoginForm = () => {
-    const session = useSession()
-    const router = useRouter()
-    const methods = useForm<z.infer<typeof loginFormSchema>>({
+    const methods = useForm<z.infer<typeof LoginFormSchema>>({
         mode: 'onSubmit',
         defaultValues: {
             email: '',
             password: '',
         },
-        resolver: zodResolver(loginFormSchema),
+        resolver: zodResolver(LoginFormSchema),
     })
 
-    const onSubmit = async (data: z.infer<typeof loginFormSchema>) => {
-        const result = await signIn('credentials', {
-            email: data.email,
-            password: data.password,
-            redirect: false,
-        })
-
-        if (result?.error) {
-            console.error('Sign-in credentials error:', result.error)
-        } else {
-            router.push('/dashboard')
-        }
-    }
-
-    useEffect(() => {
-        console.log('Session:', session)
-    }, [session])
-
+    const { handleLogin } = useLogin()
     return (
-        <Form className={'flex flex-col gap-4'} methods={methods} onSubmit={onSubmit}>
+        <Form className={'flex flex-col gap-4'} methods={methods} onSubmit={handleLogin}>
             <Input label={'Email'} inputFieldProps={{ name: 'email', placeholder: 'm@example.com' }} />
             <PasswordInput label={'Password'} inputFieldProps={{ name: 'password', placeholder: '!Qwer1234' }} />
             <Button className="w-full" text={'Login'} type={'submit'} />

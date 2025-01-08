@@ -2,6 +2,7 @@ import { type Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 
 import { getServerSession } from 'next-auth'
+import { Toaster } from 'react-hot-toast'
 
 import { SessionProvider, authOptions } from 'shared/lib/nextAuth'
 import { NextIntlProvider, type NextIntlProviderProps, languages } from 'shared/lib/nextIntl'
@@ -49,7 +50,10 @@ export default async function RootLayout({ children, params: { locale } }: NextI
             <body className={cn(montserrat.variable, 'min-h-screen bg-background')}>
                 <NextIntlProvider params={{ locale }}>
                     <SessionProvider session={session}>
-                        <TRPCReactProvider>{children}</TRPCReactProvider>
+                        <TRPCReactProvider>
+                            {children}
+                            <Toaster position="bottom-center" />
+                        </TRPCReactProvider>
                     </SessionProvider>
                 </NextIntlProvider>
             </body>

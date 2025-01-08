@@ -10,7 +10,7 @@ export const ButtonWithChild = forwardRef<HTMLButtonElement, ButtonWithChildProp
         const activeByVariant = isActive ? variant : undefined
         return (
             <button
-                className={cn(buttonCva({ variant, activeByVariant, size: 'auto' }), className)}
+                className={cn(buttonCva({ variant, activeByVariant, size: 'fit' }), className)}
                 ref={ref}
                 {...otherProps}
             >

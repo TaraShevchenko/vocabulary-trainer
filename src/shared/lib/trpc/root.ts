@@ -1,3 +1,5 @@
+import { authRouter } from 'features/Auth'
+
 import { userRouter } from 'entities/User'
 
 import { createCallerFactory, createTRPCRouter } from './trpc'
@@ -8,6 +10,7 @@ import { createCallerFactory, createTRPCRouter } from './trpc'
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
+    auth: authRouter,
     user: userRouter,
 })
 
