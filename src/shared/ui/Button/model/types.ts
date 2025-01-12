@@ -1,10 +1,9 @@
 import { type AnchorHTMLAttributes, type ButtonHTMLAttributes } from 'react'
 
 import { type VariantProps } from 'class-variance-authority'
-import { type LucideIcon } from 'lucide-react'
 
-import { type LinkProps } from 'shared/lib/next-intl'
-import { type Icon, type IconProps } from 'shared/ui/Icons'
+import { type LinkProps } from 'shared/lib/nextIntl'
+import { type Icon, type IconProps } from 'shared/ui/Icon'
 import { type TextProps } from 'shared/ui/Text'
 
 import { type buttonCva } from './config'
@@ -15,7 +14,7 @@ export type BaseButtonProps = {
 
 export type ButtonContentProps = {
     text?: string
-    icon?: LucideIcon | Icon
+    icon?: Icon
     iconProps?: IconProps
     textProps?: Omit<TextProps, 'text'>
 } & BaseButtonProps

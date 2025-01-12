@@ -4,7 +4,7 @@ import { type FC, useEffect, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { useRouter } from 'shared/lib/next-intl'
+import { useRouter } from 'shared/lib/nextIntl'
 import { Anchor } from 'shared/ui/Button'
 import { Card, CardFooter, CardHeader } from 'shared/ui/Card'
 import { Text } from 'shared/ui/Text'

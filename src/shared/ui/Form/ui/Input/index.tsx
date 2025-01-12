@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form'
 import { Input as ClearInput, type InputProps } from 'shared/ui/Input'
 
 export const Input = (props: InputProps) => {
-    const name = props.inputFieldProps.name
+    const name = props.inputFieldProps?.name ?? ''
     const {
         register,
         formState: { errors },

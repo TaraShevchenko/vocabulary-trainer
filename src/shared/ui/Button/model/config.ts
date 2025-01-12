@@ -3,7 +3,7 @@ import { type VariantProps, cva } from 'class-variance-authority'
 import { type textCva } from 'shared/ui/Text'
 
 export const buttonBase = [
-    'inline-flex items-center justify-center rounded-md ring-offset-background transition-colors gap-2',
+    'inline-flex items-center justify-center rounded-md ring-offset-background transition-colors gap-2 disabled:opacity-70 disabled:cursor-not-allowed',
 ]
 
 export const buttonVariants = {
@@ -35,9 +35,9 @@ export const buttonVariants = {
     size: {
         default: 'h-10 px-4 py-2',
         sm: 'h-8 px-3',
-        icon: 'h-10 w-10',
-        iconSm: 'h-8 w-8',
-        auto: 'h-auto w-auto',
+        icon: 'size-10',
+        iconSm: 'size-8',
+        fit: 'size-fit',
     },
 }
 
@@ -71,7 +71,7 @@ export const TEXT_PROPS_BY_BUTTON_SIZE: Record<
     sm: 'sm',
     icon: 'default',
     iconSm: 'default',
-    auto: 'default',
+    fit: 'default',
 }
 
 export const ICON_COLOR_BY_BUTTON_VARIANT: Record<

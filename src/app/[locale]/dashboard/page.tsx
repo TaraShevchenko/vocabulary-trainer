@@ -1,14 +1,17 @@
+import { Role } from '@prisma/client'
+
 import { Header } from 'widgets/Header'
 
-import { Role } from 'entities/User'
-
 import { protectRoute } from 'shared/lib/nextAuth/protectRoute'
+import { api } from 'shared/lib/trpc/server'
 import { Container } from 'shared/ui/Container'
 import { Text } from 'shared/ui/Text'
 import { cn } from 'shared/utils/cn'
 
 export default async function Dashboard() {
     await protectRoute([Role.ADMIN, Role.USER])
+    const user = await api.user.getUser()
+    console.log(user)
     return (
         <>
             <Header withNav />

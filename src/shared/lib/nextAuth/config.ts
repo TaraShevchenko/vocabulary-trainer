@@ -1,10 +1,10 @@
 import { PrismaAdapter } from '@auth/prisma-adapter'
+import { type User as PrismaUser } from '@prisma/client'
+import { compare } from 'bcryptjs'
 import { type DefaultSession, type NextAuthOptions, getServerSession } from 'next-auth'
 import { type Adapter } from 'next-auth/adapters'
-// import CredentialsProvider from 'next-auth/providers/credentials'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
-
-import { type Role } from 'entities/User'
 
 import { db } from 'shared/lib/prisma'
 import { env } from 'shared/utils/env'
@@ -19,13 +19,12 @@ declare module 'next-auth' {
     interface Session extends DefaultSession {
         user: {
             id: string
-            role: Role
+            role: PrismaUser['role']
         } & DefaultSession['user']
     }
 
-    interface User {
-        role: Role
-    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    interface User extends Omit<PrismaUser, 'password'> {}
 }
 
 /**
@@ -34,43 +33,83 @@ declare module 'next-auth' {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
-    callbacks: {
-        session: ({ session, user }) => ({
-            ...session,
-            user: {
-                ...session.user,
-                id: user.id,
-                role: user.role,
+    adapter: PrismaAdapter(db) as Adapter,
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: 'jwt',
+        maxAge: 30 * 24 * 60 * 60,
+    },
+    jwt: {
+        maxAge: 30 * 24 * 60 * 60,
+    },
+    pages: {
+        signIn: '/en/login',
+    },
+    providers: [
+        CredentialsProvider({
+            name: 'Credentials',
+            credentials: {
+                email: { label: 'Email', type: 'email' },
+                password: { label: 'Password', type: 'password' },
+            },
+            async authorize(credentials) {
+                if (!credentials?.email || !credentials?.password) {
+                    return null
+                }
+
+                const user = await db.user.findUnique({
+                    where: { email: credentials.email },
+                })
+
+                if (!user?.password) {
+                    return null
+                }
+
+                const isPasswordValid = await compare(credentials.password, user.password)
+                console.log('isPasswordValid:', isPasswordValid)
+                if (!isPasswordValid) {
+                    return null
+                }
+
+                const { password: _, ...userWithoutPassword } = user
+                console.log('userWithoutPassword:', userWithoutPassword)
+                return userWithoutPassword as Omit<PrismaUser, 'password'>
             },
         }),
-    },
-    adapter: PrismaAdapter(db) as Adapter,
-    providers: [
         GoogleProvider({
             name: 'Google',
             clientId: env.GOOGLE_CLIENT_ID,
             clientSecret: env.GOOGLE_CLIENT_SECRET,
         }),
-        // CredentialsProvider({
-        // name: 'Credentials',
-        // credentials: {
-        //     username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
-        //     password: { label: 'Password', type: 'password' },
-        // },
-        // async authorize(credentials, req) {
-        // const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' }
-
-        // if (user) {
-        // Any object returned will be saved in `user` property of the JWT
-        // return user
-        // } else {
-        // If you return null then an error will be displayed advising the user to check their details.
-        // return null
-        // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-        // }
-        // },
-        // }),
     ],
+    callbacks: {
+        async session(session) {
+            const { session: sessionData } = session ?? {}
+
+            const userFromDB = await db.user.findUnique({
+                where: { email: sessionData?.user?.email ?? '' },
+            })
+
+            return {
+                ...sessionData,
+                user: {
+                    ...sessionData?.user,
+                    id: userFromDB?.id,
+                    role: userFromDB?.role,
+                },
+            }
+        },
+        async jwt(jwt) {
+            const { token, account, user } = jwt ?? {}
+
+            return {
+                ...token,
+                accessToken: account?.access_token,
+                id: user?.id,
+                role: user?.role,
+            }
+        },
+    },
 }
 
 /**

@@ -1,34 +1,32 @@
-import { Anchor, Button } from 'shared/ui/Button'
-import { CardContent, CardFooter } from 'shared/ui/Card'
-import { Input } from 'shared/ui/Input'
+'use client'
 
-import { AuthGoogle } from '../AuthGoogle'
-import { AuthVarianceSplitter } from '../AuthVarianceSplitter'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import type { z } from 'zod'
+
+import { useLogin } from 'features/Auth/model/hooks/useLogin'
+
+import { Form, Input, PasswordInput } from 'shared/lib/rhf'
+import { Button } from 'shared/ui/Button'
+
+import { LoginFormSchema } from '../../model/schemes'
 
 export const LoginForm = () => {
+    const methods = useForm<z.infer<typeof LoginFormSchema>>({
+        mode: 'onSubmit',
+        defaultValues: {
+            email: '',
+            password: '',
+        },
+        resolver: zodResolver(LoginFormSchema),
+    })
+
+    const { handleLogin } = useLogin()
     return (
-        <>
-            <CardContent className="grid gap-4">
-                <AuthGoogle />
-                <AuthVarianceSplitter />
-                <Input
-                    label={'Email'}
-                    inputFieldProps={{ name: 'email', placeholder: 'm@example.com', disabled: true }}
-                />
-                <Input
-                    label={'Password'}
-                    inputFieldProps={{ name: 'password', placeholder: '!Qwer1234', disabled: true }}
-                />
-            </CardContent>
-            <CardFooter className="flex-col gap-2">
-                <Button className="w-full" text={'Login'} disabled />
-                <Anchor
-                    href={'/registration'}
-                    className="w-full text-white"
-                    text={'Register a new Account'}
-                    variant={'link'}
-                />
-            </CardFooter>
-        </>
+        <Form className={'flex flex-col gap-4'} methods={methods} onSubmit={handleLogin}>
+            <Input label={'Email'} inputFieldProps={{ name: 'email', placeholder: 'm@example.com' }} />
+            <PasswordInput label={'Password'} inputFieldProps={{ name: 'password', placeholder: '!Qwer1234' }} />
+            <Button className="w-full" text={'Login'} type={'submit'} />
+        </Form>
     )
 }

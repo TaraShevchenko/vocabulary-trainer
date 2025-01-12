@@ -1,4 +1,4 @@
-import { type Children } from 'shared/types/types'
+import { type Children } from 'shared/types'
 import { RedirectLayout } from 'shared/ui/Layouts/RedirectLayout'
 
 export default function UnauthorizedLayout({ children }: Children) {

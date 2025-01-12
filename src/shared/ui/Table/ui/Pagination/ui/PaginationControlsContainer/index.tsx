@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { type Children } from 'shared/types/types'
+import { type Children } from 'shared/types'
 import { cn } from 'shared/utils/cn'
 
 export const PaginationControlsContainer: FC<Children> = ({ children }) => {
