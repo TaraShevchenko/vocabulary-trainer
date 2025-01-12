@@ -42,6 +42,7 @@ const config = {
         ],
         '@typescript-eslint/no-unused-expressions': 'off',
     },
+    ignorePatterns: ['.fttemplates'],
 }
 
 module.exports = config

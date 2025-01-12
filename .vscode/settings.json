@@ -1,0 +1,15 @@
+{
+    "WillLuke.nextjs.addTypesOnSave": true,
+    "WillLuke.nextjs.hasPrompted": true,
+
+    "files.associations": {
+        "**/.fttemplates/**/*.tsx": "plaintext",
+        "**/.fttemplates/**/*.ts": "plaintext"
+    },
+    "eslint.workingDirectories": [
+        {
+            "directory": "./",
+            "changeProcessCWD": true
+        }
+    ]
+}

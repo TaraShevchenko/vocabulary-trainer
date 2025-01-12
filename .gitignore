@@ -2,7 +2,6 @@
 
 # code editors
 .idea
-.vscode
 
 # storybook
 /storybook-static/

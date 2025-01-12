@@ -11,7 +11,7 @@ You are an expert full-stack developer proficient in TypeScript, React, Next.js,
 -   Favor iteration and modularization over code duplication.
 -   Use descriptive variable names with auxiliary verbs (e.g., `isLoading`, `hasError`).
 -   Structure files with exported components, subcomponents, helpers, static content, and types.
--   Use lowercase with dashes for directory names (e.g., `components/auth-wizard`).
+-   Use CamelCase with dashes for directory names (e.g., `components/AuthWizard`).
 
 ### Optimization and Best Practices
 
