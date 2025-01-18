@@ -1,6 +1,6 @@
 'use client'
 
-import { type HTMLInputTypeAttribute, type InputHTMLAttributes, forwardRef, useMemo, useState } from 'react'
+import { type HTMLInputTypeAttribute, type InputHTMLAttributes, useMemo, useState } from 'react'
 
 import { type VariantProps } from 'class-variance-authority'
 
@@ -14,25 +14,20 @@ export type SwitchProps = {
     className?: string
     label?: string
     labelTextProps?: TextProps
-    inputFieldProps?: InputHTMLAttributes<HTMLInputElement>
-    // leftIcon?: Icon
-    // leftIconProps?: IconOrButtonProps
-    // rightIcon?: Icon
-    // rightIconProps?: IconOrButtonProps
+    inputFieldProps?: Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>
     hints?: InputHint[]
     isError?: boolean
 } & VariantProps<typeof switchVariants>
 
-export const Switch = forwardRef<HTMLInputElement, SwitchProps>((props, ref) => {
-    const {
-        type = 'checkbox',
-        variant = 'bordered',
-        className,
-        label,
-        inputFieldProps,
-        labelTextProps,
-        ...otherProps
-    } = props
+export function Switch({
+    type = 'checkbox',
+    variant = 'bordered',
+    className,
+    label,
+    inputFieldProps,
+    labelTextProps,
+    ...otherProps
+}: SwitchProps) {
     const { checked, onChange, name } = inputFieldProps ?? {}
 
     const typeAndVariantName = useMemo(() => handleGetTypeAndVariantName(type, variant), [type, variant])
@@ -56,7 +51,6 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>((props, ref) => 
             <input
                 {...otherProps}
                 type={type as HTMLInputTypeAttribute}
-                ref={ref}
                 id={name}
                 onChange={handleChange}
                 checked={checked}
@@ -64,5 +58,5 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>((props, ref) => 
             />
         </label>
     )
-})
+}
 Switch.displayName = 'Switch'

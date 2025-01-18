@@ -1,0 +1,1 @@
+export { useInputRegistration } from './useInputRegistration'

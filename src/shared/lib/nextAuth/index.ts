@@ -1,3 +1,3 @@
 export { getServerAuthSession, authOptions } from './config'
+export { NextAuthProvider } from './NextAuthProvider'
 export { protectRoute } from './protectRoute'
-export { SessionProvider } from './SessionProvider'

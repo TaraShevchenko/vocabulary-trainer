@@ -18,7 +18,7 @@
         "db:studio": "prisma studio",
         "db:push": "prisma db push",
         "postinstall": "prisma generate",
-        "update-locales-data": "tsx src/shared/lib/next-intl/utils/updateLocalesData.ts"
+        "update-locales-data": "tsx src/shared/lib/nextIntl/utils/updateLocalesData.ts"
     },
     "dependencies": {
         "@auth/prisma-adapter": "^2.7.0",
@@ -46,6 +46,7 @@
         "next": "^14.2.15",
         "next-auth": "^4.24.8",
         "next-intl": "^3.24.0",
+        "path-to-regexp": "^8.2.0",
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "react-hook-form": "^7.53.0",

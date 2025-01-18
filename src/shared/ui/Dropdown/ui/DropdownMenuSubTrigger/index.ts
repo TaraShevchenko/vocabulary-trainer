@@ -1,0 +1,1 @@
+export { DropdownMenuSubTrigger } from './DropdownMenuSubTrigger'

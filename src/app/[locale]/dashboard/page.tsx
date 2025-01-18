@@ -1,1 +1,1 @@
-export { default, metadata } from './Dashboard.page'
+export { default, generateMetadata } from './Dashboard.page'

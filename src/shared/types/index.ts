@@ -27,6 +27,10 @@ export const ErrorResponseScheme = z.object({
     }),
 })
 
+export type ClassName = {
+    className: string
+}
+
 export type Children = {
     children: ReactNode
 }

@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 
-import { ThemeSelectorLoading } from './ui/ThemeSelectorLoading'
+import { ThemeSelectorLoader } from './ThemeSelector.loader'
 
-export const ThemeSelector = dynamic(() => import('./ui/ThemeSelector'), {
-    loading: ThemeSelectorLoading,
+export const ThemeSelector = dynamic(() => import('./ThemeSelector'), {
+    loading: ThemeSelectorLoader,
     ssr: false,
 })

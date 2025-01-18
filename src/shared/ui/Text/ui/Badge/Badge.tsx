@@ -1,7 +1,7 @@
 import { Slot } from '@radix-ui/react-slot'
-import type { VariantProps } from 'class-variance-authority'
+import { type VariantProps } from 'class-variance-authority'
 
-import { Text, type TextProps } from '../Text/Text'
+import { Text, type TextProps } from '../Text'
 import { badgeVariants } from './config'
 
 type BadgeType = {
@@ -12,7 +12,7 @@ type BadgeType = {
 
 export type BadgeProps = BadgeType & VariantProps<typeof badgeVariants>
 
-export const Badge = ({ variant, className, textProps, text }: BadgeProps) => {
+export function Badge({ variant, className, textProps, text }: BadgeProps) {
     return (
         <Slot className={badgeVariants({ variant, className })}>
             <Text variant={'sm'} {...textProps} text={text} />
