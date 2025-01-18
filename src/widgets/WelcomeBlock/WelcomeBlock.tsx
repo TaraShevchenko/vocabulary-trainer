@@ -34,7 +34,7 @@ const CARDS_DATA = [
     },
 ]
 
-export const WelcomeBlock = async () => {
+export async function WelcomeBlock() {
     const t = await getTranslations('global')
     return (
         <div className={cn('container mx-auto px-4 py-4', 'up768:pt-40')}>

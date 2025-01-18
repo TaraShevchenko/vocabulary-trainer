@@ -17,7 +17,7 @@ type HeaderProps = {
     withNav?: boolean
 }
 
-export const Header = async ({ withNav }: HeaderProps) => {
+export async function Header({ withNav }: HeaderProps) {
     const t = await getTranslations('global')
     return (
         <header>

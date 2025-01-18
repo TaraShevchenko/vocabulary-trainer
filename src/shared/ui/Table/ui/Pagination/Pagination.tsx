@@ -2,12 +2,12 @@ import type { z } from 'zod'
 
 import type { PaginationResponseScheme } from 'shared/types'
 
-import { PaginationContainer } from '../PaginationContainer'
-import { type PaginationControlFunctions, PaginationControls } from '../PaginationControls'
-import { PaginationControlsContainer } from '../PaginationControlsContainer'
-import { PaginationPageInfo } from '../PaginationPageInfo'
-import { PaginationPerPageSelect } from '../PaginationPerPageSelect'
-import { PaginationRowsInfo } from '../PaginationRowsInfo'
+import { PaginationContainer } from './ui/PaginationContainer'
+import { type PaginationControlFunctions, PaginationControls } from './ui/PaginationControls'
+import { PaginationControlsContainer } from './ui/PaginationControlsContainer'
+import { PaginationPageInfo } from './ui/PaginationPageInfo'
+import { PaginationPerPageSelect } from './ui/PaginationPerPageSelect'
+import { PaginationRowsInfo } from './ui/PaginationRowsInfo'
 
 type PaginationProps = {
     onPerPageChange: (perPage: string) => void
