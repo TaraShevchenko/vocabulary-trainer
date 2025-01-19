@@ -1,0 +1,1 @@
+export { PaginationPageInfo } from './PaginationPageInfo'

@@ -1,19 +1,10 @@
 import { type AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
 
-import { type Children } from 'shared/types'
-
 import { type LanguageType } from './config'
 import enJson from './locales/en.json'
 import ruJson from './locales/ru.json'
 import uaJson from './locales/ua.json'
-
-export type Locale = Record<'locale', LanguageType>
-
-export type LocalePageProps = {
-    params: Locale
-}
-
-export type NextIntlProviderProps = LocalePageProps & Children
+import { type NextIntlProviderProps } from './types'
 
 const messages: Record<LanguageType, AbstractIntlMessages> = {
     en: enJson,
@@ -21,7 +12,7 @@ const messages: Record<LanguageType, AbstractIntlMessages> = {
     ru: ruJson,
 }
 
-export function NextIntlProvider({ children, params: { locale } }: NextIntlProviderProps) {
+export function NextIntlProvider({ locale, children }: NextIntlProviderProps) {
     return (
         <NextIntlClientProvider locale={locale} messages={messages[locale]}>
             {children}

@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 
-import { LangSelectorLoading } from './ui/LangSelectorLoading'
+import { LangSelectorLoader } from './LangSelector.loader'
 
-export const LangSelector = dynamic(() => import('./ui/LangSelector'), {
-    loading: LangSelectorLoading,
+export const LangSelector = dynamic(() => import('./LangSelector'), {
+    loading: LangSelectorLoader,
     ssr: false,
 })

@@ -1,16 +1,1 @@
-import { Header } from 'widgets/Header'
-import { WelcomeBlock } from 'widgets/WelcomeBlock'
-
-export const metadata = {
-    title: 'Welcome to Vocabulary trainer',
-    description: 'Read use full information about Vocabulary trainer',
-}
-
-export default async function Welcome() {
-    return (
-        <>
-            <Header />
-            <WelcomeBlock />
-        </>
-    )
-}
+export { default, generateMetadata } from './Welcome.page'

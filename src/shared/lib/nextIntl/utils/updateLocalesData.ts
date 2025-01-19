@@ -33,13 +33,13 @@ function updateLocalesData(locale: LanguageType, backupDir: string): void {
 
         DataByLanguageSchema.parse(dataByLanguage)
 
-        console.log(`OUTPUT -> new data for ${locale}.json is valid`)
+        // console.log(`OUTPUT -> new data for ${locale}.json is valid`)
         if (dataByLanguageOld) {
             fs.writeFileSync(join(backupDir, `from/${locale}.json`), dataByLanguageOld, 'utf-8')
         }
         fs.writeFileSync(join(backupDir, `to/${locale}.json`), JSON.stringify(dataByLanguage, null, 2), 'utf-8')
         fs.writeFileSync(join(__dirname, `../locales/${locale}.json`), JSON.stringify(dataByLanguage, null, 2), 'utf-8')
-        console.log(`${locale}.json is changed successfully!`)
+        // console.log(`${locale}.json is changed successfully!`)
     } catch (error) {
         console.error('ERROR -> ', error)
     }
@@ -48,11 +48,11 @@ function updateLocalesData(locale: LanguageType, backupDir: string): void {
 async function createBackupStructure(backupDir: string) {
     try {
         fs.mkdirSync(backupDir, { recursive: true })
-        console.log('Backup folder created successfully!')
+        // console.log('Backup folder created successfully!')
         fs.mkdirSync(`${backupDir}/from`, { recursive: true })
-        console.log('Backup folder "from" created successfully!')
+        // console.log('Backup folder "from" created successfully!')
         fs.mkdirSync(`${backupDir}/to`, { recursive: true })
-        console.log('Backup folder "to" created successfully!')
+        // console.log('Backup folder "to" created successfully!')
     } catch (err) {
         console.error('Error creating Backup folders:', err)
     }
@@ -63,6 +63,7 @@ async function handleUpdateLocales() {
     const backupDir = join(__dirname, `../backups/${date}`)
     await createBackupStructure(backupDir)
     languages.map((language) => updateLocalesData(language, backupDir))
+    console.log('Locales updated successfully!')
 }
 
 void handleUpdateLocales()

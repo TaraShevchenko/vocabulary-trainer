@@ -1,0 +1,16 @@
+{
+    "WillLuke.nextjs.addTypesOnSave": true,
+    "WillLuke.nextjs.hasPrompted": true,
+
+    // -------------------------
+    // FILE AND FOLDER TEMPLATES
+    // -------------------------
+    "files.associations": {
+        "**/.fttemplates/**/*.tsx": "plaintext",
+        "**/.fttemplates/**/*.ts": "plaintext"
+    },
+    "folderTemplates.templateNotation": {
+        "start": ["[_"],
+        "end": ["_]"]
+    }
+}

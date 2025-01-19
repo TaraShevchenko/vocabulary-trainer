@@ -4,8 +4,8 @@ import { Montserrat } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 import { Toaster } from 'react-hot-toast'
 
-import { SessionProvider, authOptions } from 'shared/lib/nextAuth'
-import { NextIntlProvider, type NextIntlProviderProps, languages } from 'shared/lib/nextIntl'
+import { NextAuthProvider, authOptions } from 'shared/lib/nextAuth'
+import { type LocalePageProps, NextIntlProvider, languages } from 'shared/lib/nextIntl'
 import { TRPCReactProvider } from 'shared/lib/trpc/client'
 import 'shared/styles/globals.css'
 import { cn } from 'shared/utils/cn'
@@ -40,21 +40,21 @@ export const metadata: Metadata = {
 export const revalidate = 0
 
 export function generateStaticParams() {
-    return languages.map((language) => ({ locale: language }))
+    return languages.map((locale) => ({ locale }))
 }
 
-export default async function RootLayout({ children, params: { locale } }: NextIntlProviderProps) {
+export default async function RootLayout({ children, params: { locale } }: LocalePageProps) {
     const session = await getServerSession(authOptions)
     return (
         <html lang={locale}>
             <body className={cn(montserrat.variable, 'min-h-screen bg-background')}>
-                <NextIntlProvider params={{ locale }}>
-                    <SessionProvider session={session}>
+                <NextIntlProvider locale={locale}>
+                    <NextAuthProvider session={session}>
                         <TRPCReactProvider>
                             {children}
                             <Toaster position="bottom-center" />
                         </TRPCReactProvider>
-                    </SessionProvider>
+                    </NextAuthProvider>
                 </NextIntlProvider>
             </body>
         </html>
